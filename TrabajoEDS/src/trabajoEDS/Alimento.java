@@ -17,6 +17,14 @@ public class Alimento {
 	double grasasSaturadas;
 	double proteinas;
 	double sal;
+	/**
+	 * El calcio debe introducirse en mg
+	 */
+	double calcio;
+	/**
+	 * El hierro debe introducirse en mg
+	 */
+	double hierro;
 	
 	public String getNombre() {
 		return nombre;
@@ -48,6 +56,14 @@ public class Alimento {
 
 	public double getSal() {
 		return sal;
+	}	
+
+	public double getCalcio() {
+		return calcio;
+	}
+
+	public double getHierro() {
+		return hierro;
 	}
 
 	public void setNombre(String nombre) {
@@ -94,6 +110,14 @@ public class Alimento {
 
 	public void setSal(double sal) {
 		this.sal = sal;
+	}
+
+	public void setCalcio(double calcio) {
+		this.calcio = calcio;
+	}
+
+	public void setHierro(double hierro) {
+		this.hierro = hierro;
 	}
 
 	@Override
