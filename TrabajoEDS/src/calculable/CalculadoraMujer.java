@@ -17,7 +17,7 @@ public class CalculadoraMujer extends Calculadora{
 		//obtener 30% 
 		int cantidadAzucarAdecuada = (CANTIDAD_ENERGIA_ADECUADA * 30)/100;
 		if(solucion.getAzucarTotal() < cantidadAzucarAdecuada) {
-			solucion.setCantidadAzucarAdecuado(true);
+			solucion.setCantidadAzucarAdecuada(true);
 		}
 		
 		return solucion;

@@ -8,20 +8,29 @@ import trabajoEDS.Persona;
 import trabajoEDS.DistribucionMacronutrientes;
 
 /**
- * Representa una calculadora de macronutrientes
+ * Calculadora es la clase abstracta base para todas las calculadoras de macronutrientes
  * @author Marta
  *
  */
 public abstract class Calculadora {
-	final int ESTANDAR_GRAMOS = 100;
+	/**
+	 * Constante que representa 100gr
+	 */
+	final int ESTANDAR_GRAMOS = 100;	
+		
+	/**
+	 * Constructor vacio
+	 * Utilizado por los constructores de las subclases, normalmente implicito
+	 */
+	protected Calculadora() {}
 	
 	public abstract DistribucionMacronutrientes calculoHabitosCorrectos(Persona persona);
 	
 	/**
-	 * Calcula y almacena en un DesgloseMacronutrientes el desglose del total de energia, grasas, azucar y sal ingeridos por una persona
+	 * Calcula y almacena en un objeto de la clase DesgloseMacronutrientes el desglose del total de macronutrientes ingeridos por una persona
 	 * 
-	 * @param persona
-	 * @return desglose del total de energia, grasas, azucar y sal ingeridos por una persona
+	 * @param persona persona a la que se va a realizar el calculo de los habitos correctos
+	 * @return desglose del total de macronutrientes ingeridos por una persona
 	 */
 	protected DistribucionMacronutrientes calculoIngestaDiaria(Persona persona) {
 		DistribucionMacronutrientes solucion = new DistribucionMacronutrientes();

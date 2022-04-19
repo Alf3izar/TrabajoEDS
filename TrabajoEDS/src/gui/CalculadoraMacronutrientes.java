@@ -327,7 +327,7 @@ public class CalculadoraMacronutrientes {
 				addRowAlimento(alimento);
 				scroll.revalidate();
 				scroll.repaint();
-				//limpiarPanelAlimento();
+				limpiarPanelAlimento();
 			}
 		});
 		btnAddAlimento.setBackground(new Color(191, 234, 237));
@@ -804,7 +804,7 @@ public class CalculadoraMacronutrientes {
 		String azucarTotalText = dformat.format(azucarTotal);
 		textFieldAzucarTot.setText(azucarTotalText);
 
-		if(!desgloseMacrosUsuario.isCantidadAzucarAdecuado()) {
+		if(!desgloseMacrosUsuario.isCantidadAzucarAdecuada()) {
 			textFieldAzucarTot.setForeground(Color.red);
 		}
 
