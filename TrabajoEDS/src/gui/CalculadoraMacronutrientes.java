@@ -35,11 +35,16 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.InputVerifier;
+
 import java.awt.GridLayout;
 
 import trabajoEDS.*;
 
 public class CalculadoraMacronutrientes {
+	
+	InputVerifier positiveDoubleVerifier;
+	InputVerifier positiveIntVerifier;
 
 	// -- Paneles -- //
 
@@ -108,7 +113,10 @@ public class CalculadoraMacronutrientes {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {		
+	private void initialize() {	
+		positiveDoubleVerifier = new PositiveDoubleVerifier();
+		positiveIntVerifier = new PositiveIntVerifier();
+		
 		JFrame = new JFrame();
 		JFrame.setTitle("Calculadora de macronutrientes");
 		JFrame.setBounds(100, 100, 1298, 773);
@@ -130,20 +138,24 @@ public class CalculadoraMacronutrientes {
 
 		textFieldEnergia = new JTextField();
 		textFieldEnergia.setColumns(10);
+		textFieldEnergia.setInputVerifier(positiveDoubleVerifier);
 		textFieldEnergia.setBounds(1214, 245, 57, 20);
 		JFrame.getContentPane().add(textFieldEnergia);
 
 		textFieldCalcio = new JTextField();
+		textFieldCalcio.setInputVerifier(positiveDoubleVerifier);
 		textFieldCalcio.setColumns(10);
 		textFieldCalcio.setBounds(1214, 541, 57, 20);
 		JFrame.getContentPane().add(textFieldCalcio);
 
 		textFieldProteinas = new JTextField();
+		textFieldProteinas.setInputVerifier(positiveDoubleVerifier);
 		textFieldProteinas.setColumns(10);
 		textFieldProteinas.setBounds(1214, 456, 57, 20);
 		JFrame.getContentPane().add(textFieldProteinas);
 
 		textFieldSal = new JTextField();
+		textFieldSal.setInputVerifier(positiveDoubleVerifier);
 		textFieldSal.setColumns(10);
 		textFieldSal.setBounds(1214, 500, 57, 20);
 		JFrame.getContentPane().add(textFieldSal);
@@ -154,21 +166,25 @@ public class CalculadoraMacronutrientes {
 		JFrame.getContentPane().add(textFieldVitaminas);
 
 		textFieldSaturadas = new JTextField();
+		textFieldSaturadas.setInputVerifier(positiveDoubleVerifier);
 		textFieldSaturadas.setColumns(10);
 		textFieldSaturadas.setBounds(1214, 329, 57, 20);
 		JFrame.getContentPane().add(textFieldSaturadas);
 
 		textFieldHidratos = new JTextField();
+		textFieldHidratos.setInputVerifier(positiveDoubleVerifier);
 		textFieldHidratos.setColumns(10);
 		textFieldHidratos.setBounds(1214, 373, 57, 20);
 		JFrame.getContentPane().add(textFieldHidratos);
 
 		textFieldAzucares = new JTextField();
+		textFieldAzucares.setInputVerifier(positiveDoubleVerifier);
 		textFieldAzucares.setColumns(10);
 		textFieldAzucares.setBounds(1214, 416, 57, 20);
 		JFrame.getContentPane().add(textFieldAzucares);
 
 		textFieldHierro = new JTextField();
+		textFieldHierro.setInputVerifier(positiveDoubleVerifier);
 		textFieldHierro.setColumns(10);
 		textFieldHierro.setBounds(1214, 624, 57, 20);
 		JFrame.getContentPane().add(textFieldHierro);
@@ -218,6 +234,7 @@ public class CalculadoraMacronutrientes {
 		JFrame.getContentPane().add(lblNewLabelKcal);
 
 		textFieldAltura = new JTextField();
+		textFieldAltura.setInputVerifier(positiveIntVerifier);
 		textFieldAltura.setBounds(763, 61, 52, 20);
 		JFrame.getContentPane().add(textFieldAltura);
 		textFieldAltura.setColumns(10);
@@ -227,7 +244,7 @@ public class CalculadoraMacronutrientes {
 		lblAltura.setBounds(709, 64, 62, 14);
 		JFrame.getContentPane().add(lblAltura);
 
-		textFieldNombreAlimento = new JTextField();
+		textFieldNombreAlimento = new JTextField();		
 		textFieldNombreAlimento.setBounds(1114, 174, 142, 20);
 		JFrame.getContentPane().add(textFieldNombreAlimento);
 		textFieldNombreAlimento.setColumns(10);
@@ -339,8 +356,9 @@ public class CalculadoraMacronutrientes {
 		lblInfoLista.setFont(new Font("Dialog", Font.BOLD, 13));
 		lblInfoLista.setBounds(438, 132, 184, 14);
 		JFrame.getContentPane().add(lblInfoLista);
-
+		
 		textFieldGrasas = new JTextField();
+		textFieldGrasas.setInputVerifier(positiveDoubleVerifier);
 		textFieldGrasas.setBounds(1214, 287, 57, 20);
 		JFrame.getContentPane().add(textFieldGrasas);
 		textFieldGrasas.setColumns(10);
@@ -453,11 +471,13 @@ public class CalculadoraMacronutrientes {
 		JFrame.getContentPane().add(lblAnyos);
 
 		textFieldEdad = new JTextField();
+		textFieldEdad.setInputVerifier(positiveIntVerifier);
 		textFieldEdad.setColumns(10);
 		textFieldEdad.setBounds(408, 61, 66, 20);
 		JFrame.getContentPane().add(textFieldEdad);
 
 		textFieldPeso = new JTextField();
+		textFieldPeso.setInputVerifier(positiveDoubleVerifier);
 		textFieldPeso.setColumns(10);
 		textFieldPeso.setBounds(577, 61, 66, 20);
 		JFrame.getContentPane().add(textFieldPeso);
