@@ -42,7 +42,7 @@ public class PositiveDoubleVerifier extends InputVerifier{
 			return checkPositiveNumber(input, number);
 		}
 		catch(NumberFormatException nfe) {
-			JOptionPane.showMessageDialog(input, "Por favor introduce solo números");
+			JOptionPane.showMessageDialog(input, "Por favor introduce solo numeros");
 			return false;
 		}
 		
@@ -70,7 +70,7 @@ public class PositiveDoubleVerifier extends InputVerifier{
 	 */
 	private boolean checkPositiveNumber(JComponent input, double number) {
 		if(number < 0) {
-			JOptionPane.showMessageDialog(input, "El número no puede ser negativo");
+			JOptionPane.showMessageDialog(input, "El numero no puede ser negativo");
 			return false;
 		}
 		

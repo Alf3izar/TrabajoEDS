@@ -43,7 +43,7 @@ public class PositiveIntVerifier extends InputVerifier{
 			return checkPositiveNumber(input, number);
 		}
 		catch(NumberFormatException nfe) {
-			JOptionPane.showMessageDialog(input, "Por favor introduce un número entero");
+			JOptionPane.showMessageDialog(input, "Por favor introduce un numero entero");
 			return false;
 		}
 		
@@ -58,7 +58,7 @@ public class PositiveIntVerifier extends InputVerifier{
 	 */
 	private boolean checkPositiveNumber(JComponent input, int number) {
 		if(number < 0) {
-			JOptionPane.showMessageDialog(input, "El número no puede ser negativo");
+			JOptionPane.showMessageDialog(input, "El numero no puede ser negativo");
 			return false;
 		}
 		

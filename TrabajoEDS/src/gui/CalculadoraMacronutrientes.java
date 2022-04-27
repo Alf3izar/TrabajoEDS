@@ -668,6 +668,7 @@ public class CalculadoraMacronutrientes {
 		panelListaAlimentos.add(chckbxAlimento);
 
 		JTextField gramosConsumidos = new JTextField();
+		gramosConsumidos.setInputVerifier(positiveDoubleVerifier);
 		gramosConsumidos.setText("0");
 		gramosConsumidos.setHorizontalAlignment(SwingConstants.CENTER);		
 		gramosConsumidos.setColumns(10);		
