@@ -621,12 +621,12 @@ public class CalculadoraMacronutrientes {
 	}
 
 	/**
-	 * Añade una nueva fila al panelListaAlimentos con la informacion del alimento
+	 * Aï¿½ade una nueva fila al panelListaAlimentos con la informacion del alimento
 	 * 
 	 * Crea un AlimentoCantidad asignando alimento y 0 a los gramos.
 	 * Crea un TextField para introducir los gramos consumidos, un JCheckBox con el nombre del alimento y JLabel con la informacion del alimento
 	 *  
-	 * @param alimento alimento a añadir
+	 * @param alimento alimento a aï¿½adir
 	 * @author Marta
 	 */
 	private void addRowAlimento(Alimento alimento) {
@@ -661,7 +661,7 @@ public class CalculadoraMacronutrientes {
 		double hierro = alimento.getHierro();
 		String textHierro = Double.toString(hierro);
 
-		//Añadir elementos GUI
+		//Aï¿½adir elementos GUI
 		JCheckBox chckbxAlimento = new JCheckBox(alimento.getNombre());
 		chckbxAlimento.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxAlimento.setBackground(new Color(250,209,255));
@@ -802,7 +802,7 @@ public class CalculadoraMacronutrientes {
 	/**
 	 * Muestra en la GUI el desglose de macronutrientes del usuario y su IMC. 
 	 * Los valores se mostraran con el formato decimal "#.##"
-	 * Si los valores son mayores a los recomendados seran mostrados en rojo
+	 * Si los valores son mayores a los recomendados seran mostrados en rojo si no seran mostrados en negro
 	 * 
 	 * @param desgloseMacrosUsuario el desglose de los macronutrientes del usuario 
 	 * @author Marta
@@ -818,6 +818,7 @@ public class CalculadoraMacronutrientes {
 		if(!desgloseMacrosUsuario.isCantidadEnergiaAdecuada()) {
 			textFieldEnergiaTot.setForeground(Color.red);
 		}
+		else textFieldEnergiaTot.setForeground(Color.black);
 
 		//Azucar
 		double azucarTotal = desgloseMacrosUsuario.getAzucarTotal();
@@ -827,6 +828,7 @@ public class CalculadoraMacronutrientes {
 		if(!desgloseMacrosUsuario.isCantidadAzucarAdecuada()) {
 			textFieldAzucarTot.setForeground(Color.red);
 		}
+		else textFieldAzucarTot.setForeground(Color.black);
 
 		//Grasas
 		double grasasTotales = desgloseMacrosUsuario.getGrasasTotales();
@@ -836,6 +838,7 @@ public class CalculadoraMacronutrientes {
 		if(!desgloseMacrosUsuario.isCantidadGrasasAdecuada()) {
 			textFieldGrasasTot.setForeground(Color.red);
 		}
+		else textFieldGrasasTot.setForeground(Color.black);
 
 		//Sal
 		double salTotal = desgloseMacrosUsuario.getSalTotal();
@@ -845,6 +848,7 @@ public class CalculadoraMacronutrientes {
 		if(!desgloseMacrosUsuario.isCantidadSalAdecuada()) {
 			textFieldSalTot.setForeground(Color.red);
 		}
+		else textFieldSalTot.setForeground(Color.black);
 
 		//IMC
 		double imc = usuario.getImc();
