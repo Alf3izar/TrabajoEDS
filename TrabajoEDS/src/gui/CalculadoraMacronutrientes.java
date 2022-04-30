@@ -42,7 +42,7 @@ import java.awt.GridLayout;
 import trabajoEDS.*;
 
 public class CalculadoraMacronutrientes {
-	
+
 	InputVerifier positiveDoubleVerifier;
 	InputVerifier positiveIntVerifier;
 
@@ -116,7 +116,7 @@ public class CalculadoraMacronutrientes {
 	private void initialize() {	
 		positiveDoubleVerifier = new PositiveDoubleVerifier();
 		positiveIntVerifier = new PositiveIntVerifier();
-		
+
 		JFrame = new JFrame();
 		JFrame.setTitle("Calculadora de macronutrientes");
 		JFrame.setBounds(100, 100, 1298, 773);
@@ -338,13 +338,19 @@ public class CalculadoraMacronutrientes {
 			 * @author Ana
 			 */
 			public void actionPerformed(ActionEvent arg0) {
-				Alimento alimento = crearAlimento();		
-				alimentos.add(alimento);
+				try {
+					Alimento alimento = crearAlimento();		
+					alimentos.add(alimento);
 
-				addRowAlimento(alimento);
-				scroll.revalidate();
-				scroll.repaint();
-				limpiarPanelAlimento();
+					addRowAlimento(alimento);
+					scroll.revalidate();
+					scroll.repaint();
+					limpiarPanelAlimento();
+				}
+				catch(IllegalArgumentException e){
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				}
+
 			}
 		});
 		btnAddAlimento.setBackground(new Color(191, 234, 237));
@@ -356,7 +362,7 @@ public class CalculadoraMacronutrientes {
 		lblInfoLista.setFont(new Font("Dialog", Font.BOLD, 13));
 		lblInfoLista.setBounds(438, 132, 184, 14);
 		JFrame.getContentPane().add(lblInfoLista);
-		
+
 		textFieldGrasas = new JTextField();
 		textFieldGrasas.setInputVerifier(positiveDoubleVerifier);
 		textFieldGrasas.setBounds(1214, 287, 57, 20);
@@ -525,7 +531,7 @@ public class CalculadoraMacronutrientes {
 	 * @return
 	 * @author Ana
 	 */
-	private Alimento crearAlimento() {
+	private Alimento crearAlimento() throws IllegalArgumentException{		
 		Alimento alimento = new Alimento();
 		String nombre = textFieldNombreAlimento.getText();
 		String energiaS = textFieldEnergia.getText();
@@ -629,7 +635,7 @@ public class CalculadoraMacronutrientes {
 	 * @param alimento alimento a a�adir
 	 * @author Marta
 	 */
-	private void addRowAlimento(Alimento alimento) {
+	private void addRowAlimento(Alimento alimento) {		
 		AlimentoCantidad alimentoCantidad = new AlimentoCantidad(alimento, 0);
 		alimentosCantidad.add(alimentoCantidad);
 
@@ -778,7 +784,9 @@ public class CalculadoraMacronutrientes {
 				alimentos.remove(alimento);
 			}
 		});
+
 	}	
+	
 
 	/**
 	 * Devuelve true si el string de algun TextField del panel persona esta vacio o solo contiene espacios en blanco, sino false
