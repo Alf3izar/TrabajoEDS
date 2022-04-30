@@ -189,9 +189,9 @@ public class Alimento {
 	 */
 	public void setAzucar(double azucar) {
 		double hidratos = this.getHidratosCarbono();
-		if(azucar < hidratos)
-			this.azucar = azucar;
-		else this.azucar = hidratos;
+		if(azucar > hidratos)
+			throw new IllegalArgumentException("La cantidad de azucar no puede ser mayor a la de hidratos de carbono");
+		else this.azucar = azucar;
 	}
 
 	/**
@@ -212,9 +212,9 @@ public class Alimento {
 	 */
 	public void setGrasasSaturadas(double grasasSaturadas) {
 		double grasas = this.getGrasas();
-		if(grasasSaturadas < grasas)
-			this.grasasSaturadas = grasasSaturadas;
-		else this.grasasSaturadas = grasas;
+		if(grasasSaturadas > grasas)
+			throw new IllegalArgumentException("La cantidad de grasas saturadas no puede ser mayor a la de grasas");
+		else this.grasasSaturadas = grasasSaturadas;
 	}
 
 	/**
