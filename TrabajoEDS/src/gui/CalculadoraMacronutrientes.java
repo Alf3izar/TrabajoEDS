@@ -13,10 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JTextPane;
 import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 import calculable.Calculadora;
 import calculable.CalculadoraHombre;
@@ -39,7 +39,6 @@ import javax.swing.InputVerifier;
 import java.awt.GridLayout;
 
 import trabajoEDS.*;
-import calculable.*;
 
 public class CalculadoraMacronutrientes {
 
@@ -47,18 +46,19 @@ public class CalculadoraMacronutrientes {
 
 	private JFrame JFrame;	
 	private JPanel panelListaAlimentos;
-	JScrollPane scroll;	
-	
+	private JScrollPane scroll;
+	private JPanel backgroundGeneralListaAlimentos;
+
 	// -- Fields Persona -- //
 
 	private JTextField textFieldNombrePers;
 	private JTextField textFieldEdad;
 	private JTextField textFieldPeso;
-	private JTextField textFieldImc;
+	private JLabel lblResultImc;
 	private JTextField textFieldAltura;
 	private JComboBox<ActividadFisica> comboBoxActFisica;
-	private JComboBox<Genero> comboBoxGenero;
-	
+	private JComboBox<Genero> comboBoxSexo;
+
 	// -- Fields Alimento -- //
 
 	private JTextField textFieldGrasas;
@@ -72,22 +72,28 @@ public class CalculadoraMacronutrientes {
 	private JTextField textFieldVitaminas;
 	private JTextField textFieldHierro;
 	private JTextField textFieldEnergia;
-	
+
 	// -- Fields Calculo -- //
 
-	private JTextField textFieldGrasasTot;
-	private JTextField textFieldAzucarTot;
-	private JTextField textFieldSalTot;
-	private JTextField textFieldEnergiaTot;
+	private JLabel lblEnergiaTotCalc;
+	private JLabel lblSalTotCalc;
+	private JLabel lblGrasasTotCalc;
+	private JLabel lblGrasasSatTotCalc;
+	private JLabel lblHidratosCarbTotCalc;
+	private JLabel lblAzucarTotCalc;
+	private JLabel lblHierroTotCalc;
+	private JLabel lblCalcioTotCalc;
+
+	// -- Otros atributos necesarios -- //
 	
 	private Persona usuario;
 	private ArrayList<AlimentoCantidad> alimentosCantidad = new ArrayList<AlimentoCantidad>();
 	private ArrayList<Alimento> alimentos = new ArrayList<Alimento>();
-
-	// -- Verifificadores -- //
 	
-		InputVerifier positiveDoubleVerifier;
-		InputVerifier positiveIntVerifier;
+	// -- Verificadores -- //
+	
+	InputVerifier positiveDoubleVerifier;
+	InputVerifier positiveIntVerifier;
 	
 	/**
 	 * Launch the application.
@@ -116,13 +122,14 @@ public class CalculadoraMacronutrientes {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		initializeVerifiers();
 		inicializarVentana();
 		inicializarPanelPersona();
 		inicializarPanelAlimento();
-		inicializarPanelListaAlimentos();
 		intializePanelListaAlimentos();
+		inicializarPanelCalculo();
 	}
-	
+
 	/**
 	 * Inicializa la ventana principal del programa.
 	 * 
@@ -131,9 +138,19 @@ public class CalculadoraMacronutrientes {
 	private void inicializarVentana() {
 		JFrame = new JFrame();
 		JFrame.setTitle("Calculadora de nutrientes");
-		JFrame.setBounds(100, 100, 1340, 773);
-		JFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JFrame.setBounds(100, 100, 1338, 773);
+		JFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		JFrame.getContentPane().setLayout(null);
+	}
+	
+	/**
+	 * Inicializa los verificadores 
+	 * 
+	 * @author Ana
+	 */
+	private void initializeVerifiers() {
+		positiveDoubleVerifier = new PositiveDoubleVerifier();
+		positiveIntVerifier = new PositiveIntVerifier();
 	}
 	
 	/**
@@ -142,133 +159,126 @@ public class CalculadoraMacronutrientes {
 	 * @author Ana
 	 */
 	private void inicializarPanelPersona() {
-			
-	// -- Información -- //
+		
+		// -- Panel (backrground) de la persona -- //
+		
+			JPanel backroundPers = new JPanel();
+			backroundPers.setBackground(new Color(251, 248, 204));
+			backroundPers.setBounds(10, 11, 1304, 94);
+			JFrame.getContentPane().add(backroundPers);
+			backroundPers.setLayout(null);
+		
+		// -- Información -- //
 		
 			JLabel lblInfoPers = new JLabel("1.- Introduzca sus datos para obtener un cálculo personalizado sobre sus ingestas diarias: ");
 			lblInfoPers.setFont(new Font("Dialog", Font.BOLD, 13));
-			lblInfoPers.setBounds(349, 11, 598, 41);
-			JFrame.getContentPane().add(lblInfoPers);
+			lblInfoPers.setBounds(349, 11, 616, 31);
+			backroundPers.add(lblInfoPers);
+			
+		// -- Nombre de la persona -- //
 		
+			JLabel lblNombrePers = new JLabel("Nombre:");
+			lblNombrePers.setForeground(Color.BLACK);
+			lblNombrePers.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblNombrePers.setBounds(44, 56, 77, 14);
+			backroundPers.add(lblNombrePers);
+			
+			textFieldNombrePers = new JTextField();
+			textFieldNombrePers.setBounds(116, 53, 97, 20);
+			backroundPers.add(textFieldNombrePers);
+			textFieldNombrePers.setColumns(10);
 		
-	// -- Nombre de la persona -- //
+		// -- Genero de la persona -- //
 		
-		JLabel lblNombrePers = new JLabel("Nombre:");
-		lblNombrePers.setForeground(Color.BLACK);
-		lblNombrePers.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNombrePers.setBounds(21, 64, 66, 14);
-		JFrame.getContentPane().add(lblNombrePers);
+			JLabel lblGenero = new JLabel("Genero:");
+			lblGenero.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblGenero.setForeground(Color.BLACK);
+			lblGenero.setBounds(239, 56, 61, 14);
+			backroundPers.add(lblGenero);
+			
+			comboBoxSexo = new JComboBox<Genero>();
+			comboBoxSexo.setModel(new DefaultComboBoxModel<Genero>(Genero.values()));
+			comboBoxSexo.setBounds(305, 53, 104, 20);
+			backroundPers.add(comboBoxSexo);
+			
+		// -- Edad de la persona -- //
 		
-		textFieldNombrePers = new JTextField();
-		textFieldNombrePers.setBounds(82, 61, 97, 20);
-		JFrame.getContentPane().add(textFieldNombrePers);
-		textFieldNombrePers.setColumns(10);
+			JLabel lblEdad = new JLabel("Edad:");
+			lblEdad.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblEdad.setBounds(445, 56, 52, 14);
+			backroundPers.add(lblEdad);
+			
+			textFieldEdad = new JTextField();
+			textFieldEdad.setInputVerifier(positiveIntVerifier);
+			textFieldEdad.setColumns(10);
+			textFieldEdad.setBounds(494, 53, 66, 20);
+			backroundPers.add(textFieldEdad);
+			
+			JLabel lblAnyos = new JLabel("a\u00F1os");
+			lblAnyos.setFont(new Font("Dialog", Font.PLAIN, 11));
+			lblAnyos.setBounds(563, 56, 46, 14);
+			backroundPers.add(lblAnyos);
 		
+		// -- Peso de la persona -- //
 		
-	// -- Genero de la persona -- //
+			JLabel lblPeso = new JLabel("Peso:");
+			lblPeso.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblPeso.setBounds(627, 56, 61, 14);
+			backroundPers.add(lblPeso);
+			
+			textFieldPeso = new JTextField();
+			textFieldPeso.setInputVerifier(positiveDoubleVerifier);
+			textFieldPeso.setColumns(10);
+			textFieldPeso.setBounds(678, 53, 66, 20);
+			backroundPers.add(textFieldPeso);
+			
+			JLabel lblkg = new JLabel("kg");
+			lblkg.setFont(new Font("Dialog", Font.PLAIN, 11));
+			lblkg.setBounds(748, 56, 34, 14);
+			backroundPers.add(lblkg);
 		
-		JLabel lblGenero = new JLabel("Genero:");
-		lblGenero.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGenero.setForeground(Color.BLACK);
-		lblGenero.setBounds(193, 64, 52, 14);
-		JFrame.getContentPane().add(lblGenero);
+		// -- Altura de la persona -- //
 		
-		comboBoxGenero = new JComboBox<Genero>();
-		comboBoxGenero.setModel(new DefaultComboBoxModel<Genero>(Genero.values()));
-		comboBoxGenero.setBounds(250, 61, 104, 20);
-		JFrame.getContentPane().add(comboBoxGenero);
+			JLabel lblAltura = new JLabel("Altura:");
+			lblAltura.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblAltura.setBounds(781, 54, 52, 19);
+			backroundPers.add(lblAltura);
+			
+			textFieldAltura = new JTextField();
+			textFieldAltura.setInputVerifier(positiveIntVerifier);
+			textFieldAltura.setBounds(837, 53, 86, 20);
+			backroundPers.add(textFieldAltura);
+			textFieldAltura.setColumns(10);
+			
+			JLabel lblCm = new JLabel("cm");
+			lblCm.setFont(new Font("Dialog", Font.PLAIN, 11));
+			lblCm.setBounds(927, 56, 20, 15);
+			backroundPers.add(lblCm);
 		
-	
-	// -- Edad de la persona -- //
+		// -- Actividad Física de la persona -- //
 		
-		JLabel lblEdad = new JLabel("Edad:");
-		lblEdad.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblEdad.setBounds(385, 64, 46, 14);
-		JFrame.getContentPane().add(lblEdad);
+			JLabel lblActFisica = new JLabel("Actividad f\u00EDsica:");
+			lblActFisica.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblActFisica.setBounds(967, 54, 111, 19);
+			backroundPers.add(lblActFisica);
+			
+			comboBoxActFisica = new JComboBox<ActividadFisica>();
+			comboBoxActFisica.setModel(new DefaultComboBoxModel<ActividadFisica>(ActividadFisica.values()));
+			comboBoxActFisica.setBounds(1068, 53, 83, 20);
+			backroundPers.add(comboBoxActFisica);
 		
-		textFieldEdad = new JTextField();
-		textFieldEdad.setColumns(10);
-		textFieldEdad.setBounds(428, 61, 66, 20);
-		JFrame.getContentPane().add(textFieldEdad);
-		
-		JLabel lblAnyos = new JLabel("a\u00F1os");
-		lblAnyos.setFont(new Font("Dialog", Font.PLAIN, 11));
-		lblAnyos.setBounds(497, 64, 46, 14);
-		JFrame.getContentPane().add(lblAnyos);
-		
-		
-	// -- Peso de la persona -- //
-		
-		JLabel lblPeso = new JLabel("Peso:");
-		lblPeso.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblPeso.setBounds(553, 64, 52, 14);
-		JFrame.getContentPane().add(lblPeso);
-		
-		textFieldPeso = new JTextField();
-		textFieldPeso.setColumns(10);
-		textFieldPeso.setBounds(595, 61, 66, 20);
-		JFrame.getContentPane().add(textFieldPeso);
-		
-		JLabel lblkg = new JLabel("kg");
-		lblkg.setFont(new Font("Dialog", Font.PLAIN, 11));
-		lblkg.setBounds(665, 64, 34, 14);
-		JFrame.getContentPane().add(lblkg);
-		
-		
-	// -- Altura de la persona -- //
-		
-		JLabel lblAltura = new JLabel("Altura:");
-		lblAltura.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblAltura.setBounds(720, 64, 62, 14);
-		JFrame.getContentPane().add(lblAltura);
-		
-		textFieldAltura = new JTextField();
-		textFieldAltura.setBounds(774, 61, 52, 20);
-		JFrame.getContentPane().add(textFieldAltura);
-		textFieldAltura.setColumns(10);
-		
-		JLabel lblCm = new JLabel("cm");
-		lblCm.setFont(new Font("Dialog", Font.PLAIN, 11));
-		lblCm.setBounds(830, 64, 34, 14);
-		JFrame.getContentPane().add(lblCm);
-		
-		
-	// -- Actividad Física de la persona -- //
-		
-		JLabel lblActFisica = new JLabel("Actividad f\u00EDsica:");
-		lblActFisica.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblActFisica.setBounds(885, 64, 122, 14);
-		JFrame.getContentPane().add(lblActFisica);
-		
-		comboBoxActFisica = new JComboBox<ActividadFisica>();
-		comboBoxActFisica.setModel(new DefaultComboBoxModel<ActividadFisica>(ActividadFisica.values()));
-		comboBoxActFisica.setBounds(1003, 61, 130, 20);
-		JFrame.getContentPane().add(comboBoxActFisica);
-		
-		
-	// -- IMC de la persona (autocalculable) -- //
-		
-		JLabel lblImc = new JLabel("IMC:");
-		lblImc.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblImc.setBounds(1158, 64, 46, 14);
-		JFrame.getContentPane().add(lblImc);
-		
-		textFieldImc = new JTextField();
-		textFieldImc.setEditable(false);
-		textFieldImc.setBounds(1201, 61, 86, 20);
-		JFrame.getContentPane().add(textFieldImc);
-		textFieldImc.setColumns(10);
-		
-		
-	// -- Panel (backrground) de la persona -- //
-		
-		JTextPane backroundPers = new JTextPane();
-		backroundPers.setEditable(false);
-		backroundPers.setBackground(new Color(251, 248, 204));
-		backroundPers.setBounds(10, 11, 1304, 94);
-		JFrame.getContentPane().add(backroundPers);
+		// -- IMC de la persona (autocalculable) -- //
+			
+			JLabel lblImc = new JLabel("IMC:");
+			lblImc.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblImc.setBounds(1173, 54, 37, 19);
+			backroundPers.add(lblImc);
+			
+			lblResultImc = new JLabel("0");
+			lblResultImc.setBounds(1217, 54, 53, 18);
+			backroundPers.add(lblResultImc);
 	}
-	
+			
 	/**
 	 * Inicializa todos los componentes del panel del alimento.
 	 * 
@@ -276,232 +286,241 @@ public class CalculadoraMacronutrientes {
 	 */
 	private void inicializarPanelAlimento() {
 		
-	// -- Información -- / /
+		// -- Paneles (backrground) del alimento -- //
 		
-		JLabel lblInfoAlimOp = new JLabel("OPCIONAL");
-		lblInfoAlimOp.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInfoAlimOp.setFont(new Font("Dialog", Font.BOLD, 13));
-		lblInfoAlimOp.setBounds(1126, 117, 86, 14);
-		JFrame.getContentPane().add(lblInfoAlimOp);
+			JPanel backroundAddAlim = new JPanel();
+			backroundAddAlim.setBackground(new Color(192, 250, 255));
+			backroundAddAlim.setBounds(1025, 104, 289, 628);
+			JFrame.getContentPane().add(backroundAddAlim);
+			backroundAddAlim.setLayout(null);
+			
+			JPanel backgroundInfoNutricional = new JPanel();
+			backgroundInfoNutricional.setBackground(new Color(192, 250, 255));
+			backgroundInfoNutricional.setBounds(0, 162, 289, 466);
+			backroundAddAlim.add(backgroundInfoNutricional);
 		
-		JLabel lblInfoAl1 = new JLabel("Añadir un alimento a la lista:");
-		lblInfoAl1.setFont(new Font("Dialog", Font.BOLD, 13));
-		lblInfoAl1.setBounds(1069, 133, 200, 14);
-		JFrame.getContentPane().add(lblInfoAl1);
+		// -- Información -- //
 		
-		JLabel lblInfoNutricional = new JLabel("Información nutricional                    100gr.");
-		lblInfoNutricional.setFont(new Font("Dialog", Font.BOLD, 11));
-		lblInfoNutricional.setBounds(1043, 223, 252, 14);
-		JFrame.getContentPane().add(lblInfoNutricional);
+			JLabel lblInfoAlimOp = new JLabel("OPCIONAL");
+			lblInfoAlimOp.setHorizontalAlignment(SwingConstants.CENTER);
+			lblInfoAlimOp.setFont(new Font("Dialog", Font.BOLD, 13));
+			lblInfoAlimOp.setBounds(105, 11, 83, 18);
+			backroundAddAlim.add(lblInfoAlimOp);
+			
+			JLabel lblInfoAl1 = new JLabel("Añadir un alimento a la lista:");
+			lblInfoAl1.setFont(new Font("Dialog", Font.BOLD, 13));
+			lblInfoAl1.setBounds(44, 40, 205, 18);
+			backroundAddAlim.add(lblInfoAl1);
+			
+			JLabel lblInfoNutricional = new JLabel("Informaci\u00F3n nutricional                     100gr.");
+			lblInfoNutricional.setFont(new Font("Dialog", Font.BOLD, 11));
+			lblInfoNutricional.setBounds(10, 136, 269, 15);
+			backroundAddAlim.add(lblInfoNutricional);
 		
+		// -- Nombre del alimento -- //
 		
-	// -- Nombre del alimento -- //
+			JLabel lblNombreAlimento = new JLabel("Nombre:");
+			lblNombreAlimento.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblNombreAlimento.setBounds(20, 88, 73, 19);
+			backroundAddAlim.add(lblNombreAlimento);
+			
+			textFieldNombreAlimento = new JTextField();
+			textFieldNombreAlimento.setBounds(103, 87, 159, 20);
+			backroundAddAlim.add(textFieldNombreAlimento);
+			textFieldNombreAlimento.setColumns(10);
+			backgroundInfoNutricional.setLayout(null);
 		
-		JLabel lblNombreAlimento = new JLabel("Nombre:");
-		lblNombreAlimento.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNombreAlimento.setBounds(1074, 177, 104, 14);
-		JFrame.getContentPane().add(lblNombreAlimento);
+		// -- Energía del alimento -- //
 		
-		textFieldNombreAlimento = new JTextField();
-		textFieldNombreAlimento.setBounds(1145, 174, 142, 20);
-		JFrame.getContentPane().add(textFieldNombreAlimento);
-		textFieldNombreAlimento.setColumns(10);
-		
-		
-	// -- Energía del alimento -- //
-		
-		JLabel lblEnergia = new JLabel("Energia:");
-		lblEnergia.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblEnergia.setBounds(1035, 265, 78, 14);
-		JFrame.getContentPane().add(lblEnergia);
+			JLabel lblEnergia = new JLabel("Energia:");
+			lblEnergia.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblEnergia.setBounds(10, 11, 64, 19);
+			backgroundInfoNutricional.add(lblEnergia);
 
-		textFieldEnergia = new JTextField();
-		textFieldEnergia.setColumns(10);
-		textFieldEnergia.setBounds(1214, 262, 57, 20);
-		JFrame.getContentPane().add(textFieldEnergia);
+			textFieldEnergia = new JTextField();
+			textFieldEnergia.setColumns(10);
+			textFieldEnergia.setBounds(168, 10, 86, 20);
+			textFieldEnergia.setInputVerifier(positiveDoubleVerifier);
+			backgroundInfoNutricional.add(textFieldEnergia);
+			
+			JLabel lblKcal1 = new JLabel("kcal");
+			lblKcal1.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblKcal1.setBounds(258, 11, 31, 19);
+			backgroundInfoNutricional.add(lblKcal1);
+			
+		// -- Grasas del alimento -- //
 		
-		JLabel lblKcal1 = new JLabel("kcal");
-		lblKcal1.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblKcal1.setBounds(1276, 265, 34, 14);
-		JFrame.getContentPane().add(lblKcal1);
+			JLabel lblGrasas = new JLabel("Grasas:");
+			lblGrasas.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblGrasas.setBounds(10, 56, 64, 19);
+			backgroundInfoNutricional.add(lblGrasas);
+			
+			textFieldGrasas = new JTextField();
+			textFieldGrasas.setBounds(168, 55, 86, 20);
+			textFieldGrasas.setInputVerifier(positiveDoubleVerifier);
+			backgroundInfoNutricional.add(textFieldGrasas);
+			textFieldGrasas.setColumns(10);
+			
+			JLabel lblGr4 = new JLabel("gr");
+			lblGr4.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblGr4.setBounds(258, 56, 25, 19);
+			backgroundInfoNutricional.add(lblGr4);
+			
+		// -- Grasas saturadas del alimento -- //
+		
+			JLabel lblGrasasSat = new JLabel("de las cuales saturadas:");
+			lblGrasasSat.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblGrasasSat.setBounds(10, 100, 179, 19);
+			backgroundInfoNutricional.add(lblGrasasSat);
+			
+			textFieldSaturadas = new JTextField();
+			textFieldSaturadas.setColumns(10);
+			textFieldSaturadas.setBounds(168, 99, 86, 20);
+			textFieldSaturadas.setInputVerifier(positiveDoubleVerifier);
+			backgroundInfoNutricional.add(textFieldSaturadas);
+			
+			JLabel lblGr5 = new JLabel("gr");
+			lblGr5.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblGr5.setBounds(258, 100, 25, 19);
+			backgroundInfoNutricional.add(lblGr5);
+		
+		// -- Hidratos de carbono del alimento -- //
+		
+			JLabel lblHidratos = new JLabel("Hidratos de carbono:");
+			lblHidratos.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblHidratos.setBounds(10, 144, 148, 19);
+			backgroundInfoNutricional.add(lblHidratos);
+			
+			textFieldHidratos = new JTextField();
+			textFieldHidratos.setColumns(10);
+			textFieldHidratos.setBounds(168, 143, 86, 20);
+			textFieldHidratos.setInputVerifier(positiveDoubleVerifier);
+			backgroundInfoNutricional.add(textFieldHidratos);
+			
+			JLabel lblGr6 = new JLabel("gr");
+			lblGr6.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblGr6.setBounds(258, 144, 25, 19);
+			backgroundInfoNutricional.add(lblGr6);
+		
+		// -- Azúcares del alimento -- //
+		
+			JLabel lblAzucar = new JLabel("de los cuales azúcares:");
+			lblAzucar.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblAzucar.setBounds(10, 192, 160, 19);
+			backgroundInfoNutricional.add(lblAzucar);
+			
+			textFieldAzucares = new JTextField();
+			textFieldAzucares.setColumns(10);
+			textFieldAzucares.setBounds(168, 191, 86, 20);
+			textFieldAzucares.setInputVerifier(positiveDoubleVerifier);
+			backgroundInfoNutricional.add(textFieldAzucares);
+			
+			JLabel lblGr7 = new JLabel("gr");
+			lblGr7.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblGr7.setBounds(258, 192, 25, 19);
+			backgroundInfoNutricional.add(lblGr7);
+		
+		// -- Proteínas del alimento -- //
+		
+			JLabel lblProteinas = new JLabel("Prote\u00EDnas:");
+			lblProteinas.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblProteinas.setBounds(10, 235, 86, 19);
+			backgroundInfoNutricional.add(lblProteinas);
+			
+			textFieldProteinas = new JTextField();
+			textFieldProteinas.setColumns(10);
+			textFieldProteinas.setBounds(168, 234, 86, 20);
+			textFieldProteinas.setInputVerifier(positiveDoubleVerifier);
+			backgroundInfoNutricional.add(textFieldProteinas);
+			
+			JLabel lblGr8 = new JLabel("gr");
+			lblGr8.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblGr8.setBounds(258, 235, 25, 19);
+			backgroundInfoNutricional.add(lblGr8);
+			
+		// -- Sal del alimento -- //
+		
+			JLabel lblSal = new JLabel("Sal:");
+			lblSal.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblSal.setBounds(10, 276, 43, 19);
+			backgroundInfoNutricional.add(lblSal);
+			
+			textFieldSal = new JTextField();
+			textFieldSal.setColumns(10);
+			textFieldSal.setBounds(168, 275, 86, 20);
+			textFieldSal.setInputVerifier(positiveDoubleVerifier);
+			backgroundInfoNutricional.add(textFieldSal);
+			
+			JLabel lblGr9 = new JLabel("gr");
+			lblGr9.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblGr9.setBounds(258, 276, 25, 19);
+			backgroundInfoNutricional.add(lblGr9);
+		
+		// -- Calcio del alimento -- //
+		
+			JLabel lblCalcio = new JLabel("Calcio:");
+			lblCalcio.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblCalcio.setBounds(10, 322, 64, 19);
+			backgroundInfoNutricional.add(lblCalcio);
+			
+			textFieldCalcio = new JTextField();
+			textFieldCalcio.setColumns(10);
+			textFieldCalcio.setBounds(168, 321, 86, 20);
+			textFieldCalcio.setInputVerifier(positiveDoubleVerifier);
+			backgroundInfoNutricional.add(textFieldCalcio);
+			
+			JLabel lblGr10 = new JLabel("gr");
+			lblGr10.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblGr10.setBounds(258, 322, 25, 19);
+			backgroundInfoNutricional.add(lblGr10);
+			
+		// -- Hierro del alimento -- //
+		
+			JLabel lblHierro = new JLabel("Hierro:");
+			lblHierro.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblHierro.setBounds(10, 373, 64, 19);
+			backgroundInfoNutricional.add(lblHierro);
+			
+			textFieldHierro = new JTextField();
+			textFieldHierro.setColumns(10);
+			textFieldHierro.setBounds(168, 372, 86, 20);
+			textFieldHierro.setInputVerifier(positiveDoubleVerifier);
+			backgroundInfoNutricional.add(textFieldHierro);
+			
+			JLabel lblGr11 = new JLabel("gr");
+			lblGr11.setFont(new Font("Dialog", Font.PLAIN, 14));
+			lblGr11.setBounds(258, 373, 25, 19);
+			backgroundInfoNutricional.add(lblGr11);
+			
+		// -- Botón para añadir el alimento -- //
+		
+			JButton btnAddAlimento = new JButton("Añadir");
+			btnAddAlimento.addActionListener(new ActionListener() {
+				/**
+				 * Añade un alimento al objeto Alimento y pinta una nueva fila en el panel
+				 * de la lista de alimentos. A continuación limpia todos los textFields del Alimento.
+				 * 
+				 * @author Ana
+				 */
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						Alimento alimento = crearAlimento();		
+						alimentos.add(alimento);
 
-		
-	// -- Grasas del alimento -- //
-		
-		JLabel lblGrasas = new JLabel("Grasas:");
-		lblGrasas.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGrasas.setBounds(1035, 308, 78, 14);
-		JFrame.getContentPane().add(lblGrasas);
-		
-		textFieldGrasas = new JTextField();
-		textFieldGrasas.setBounds(1214, 305, 57, 20);
-		JFrame.getContentPane().add(textFieldGrasas);
-		textFieldGrasas.setColumns(10);
-		
-		JLabel lblGr4 = new JLabel("gr");
-		lblGr4.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr4.setBounds(1276, 305, 34, 20);
-		JFrame.getContentPane().add(lblGr4);
-		
-		
-	// -- Grasas saturadas del alimento -- //
-		
-		JLabel lblGrasasSat = new JLabel("de las cuales saturadas:");
-		lblGrasasSat.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGrasasSat.setBounds(1035, 354, 184, 14);
-		JFrame.getContentPane().add(lblGrasasSat);
-		
-		textFieldSaturadas = new JTextField();
-		textFieldSaturadas.setColumns(10);
-		textFieldSaturadas.setBounds(1214, 351, 57, 20);
-		JFrame.getContentPane().add(textFieldSaturadas);
-		
-		JLabel lblGr5 = new JLabel("gr");
-		lblGr5.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr5.setBounds(1276, 352, 33, 20);
-		JFrame.getContentPane().add(lblGr5);
-		
-		
-	// -- Hidratos de carbono del alimento -- //
-		
-		JLabel lblHidratos = new JLabel("Hidratos de carbono:");
-		lblHidratos.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblHidratos.setBounds(1035, 402, 166, 14);
-		JFrame.getContentPane().add(lblHidratos);
-		
-		textFieldHidratos = new JTextField();
-		textFieldHidratos.setColumns(10);
-		textFieldHidratos.setBounds(1214, 399, 57, 20);
-		JFrame.getContentPane().add(textFieldHidratos);
-		
-		JLabel lblGr6 = new JLabel("gr");
-		lblGr6.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr6.setBounds(1276, 400, 34, 20);
-		JFrame.getContentPane().add(lblGr6);
-		
-		
-	// -- Azúcares del alimento -- //
-		
-		JLabel lblAzucar = new JLabel("de los cuales azúcares:");
-		lblAzucar.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblAzucar.setBounds(1035, 446, 166, 14);
-		JFrame.getContentPane().add(lblAzucar);
-		
-		textFieldAzucares = new JTextField();
-		textFieldAzucares.setColumns(10);
-		textFieldAzucares.setBounds(1214, 443, 57, 20);
-		JFrame.getContentPane().add(textFieldAzucares);
-		
-		JLabel lblGr7 = new JLabel("gr");
-		lblGr7.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr7.setBounds(1276, 444, 33, 20);
-		JFrame.getContentPane().add(lblGr7);
-		
-		
-	// -- Proteínas del alimento -- //
-		
-		JLabel lblProteinas = new JLabel("Prote\u00EDnas:");
-		lblProteinas.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblProteinas.setBounds(1035, 490, 86, 14);
-		JFrame.getContentPane().add(lblProteinas);
-		
-		textFieldProteinas = new JTextField();
-		textFieldProteinas.setColumns(10);
-		textFieldProteinas.setBounds(1214, 487, 57, 20);
-		JFrame.getContentPane().add(textFieldProteinas);
-		
-		JLabel lblGr8 = new JLabel("gr");
-		lblGr8.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr8.setBounds(1276, 487, 35, 20);
-		JFrame.getContentPane().add(lblGr8);
-		
-		
-	// -- Sal del alimento -- //
-		
-		JLabel lblSal = new JLabel("Sal:");
-		lblSal.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblSal.setBounds(1035, 537, 46, 14);
-		JFrame.getContentPane().add(lblSal);
-		
-		textFieldSal = new JTextField();
-		textFieldSal.setColumns(10);
-		textFieldSal.setBounds(1214, 534, 57, 20);
-		JFrame.getContentPane().add(textFieldSal);
-		
-		JLabel lblGr9 = new JLabel("gr");
-		lblGr9.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr9.setBounds(1276, 533, 35, 20);
-		JFrame.getContentPane().add(lblGr9);
-		
-		
-	// -- Calcio del alimento -- //
-		
-		JLabel lblCalcio = new JLabel("Calcio:");
-		lblCalcio.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblCalcio.setBounds(1035, 583, 60, 14);
-		JFrame.getContentPane().add(lblCalcio);
-		
-		textFieldCalcio = new JTextField();
-		textFieldCalcio.setColumns(10);
-		textFieldCalcio.setBounds(1214, 580, 57, 20);
-		JFrame.getContentPane().add(textFieldCalcio);
-		
-		JLabel lblGr10 = new JLabel("gr");
-		lblGr10.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr10.setBounds(1276, 580, 34, 20);
-		JFrame.getContentPane().add(lblGr10);
-		
-	// -- Hierro del alimento -- //
-		
-		JLabel lblHierro = new JLabel("Hierro:");
-		lblHierro.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblHierro.setBounds(1035, 626, 60, 14);
-		JFrame.getContentPane().add(lblHierro);
-		
-		textFieldHierro = new JTextField();
-		textFieldHierro.setColumns(10);
-		textFieldHierro.setBounds(1214, 624, 57, 20);
-		JFrame.getContentPane().add(textFieldHierro);
-		
-		JLabel lblGr11 = new JLabel("gr");
-		lblGr11.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr11.setBounds(1276, 624, 32, 20);
-		JFrame.getContentPane().add(lblGr11);
-		
-		
-	// -- Botón para añadir el alimento -- //
-		
-		JButton btnAddAlimento = new JButton("Añadir");
-		btnAddAlimento.addActionListener(new ActionListener() {
-			/**
-			 * Añade un alimento al objeto Alimento y pinta una nueva fila en el panel
-			 * de la lista de alimentos. A continuación limpia todos los textFields del Alimento.
-			 * 
-			 * @author Ana
-			 */
-			public void actionPerformed(ActionEvent arg0) {
-				Alimento alimento = crearAlimento();		
-				alimentos.add(alimento);
-				addRowAlimento(alimento);
-				scroll.revalidate();
-				scroll.repaint();
-				limpiarPanelAlimento();
-			}
-		});
-		btnAddAlimento.setBackground(new Color(191, 234, 237));
-		btnAddAlimento.setFont(new Font("Dialog", Font.PLAIN, 12));
-		btnAddAlimento.setBounds(1125, 683, 89, 23);
-		JFrame.getContentPane().add(btnAddAlimento);
-		
-		
-	// -- Panel (backrground) del alimento -- //
-		
-		JTextPane backroundAddAlim = new JTextPane();
-		backroundAddAlim.setEditable(false);
-		backroundAddAlim.setBackground(new Color(192, 250, 255));
-		backroundAddAlim.setBounds(1025, 104, 289, 628);
-		JFrame.getContentPane().add(backroundAddAlim);
-		
+						addRowAlimento(alimento);
+						scroll.revalidate();
+						scroll.repaint();
+						limpiarPanelAlimento();
+					}
+					catch(IllegalArgumentException e){
+						JOptionPane.showMessageDialog(null, e.getMessage());
+					}
+				}
+			});
+			btnAddAlimento.setBackground(new Color(191, 234, 237));
+			btnAddAlimento.setFont(new Font("Dialog", Font.PLAIN, 12));
+			btnAddAlimento.setBounds(109, 415, 80, 25);
+			backgroundInfoNutricional.add(btnAddAlimento);
 	}
 	
 	/**
@@ -509,123 +528,204 @@ public class CalculadoraMacronutrientes {
 	 * 
 	 * @author Ana
 	 */
-	private void inicializarPanelListaAlimentos() {
+	private void inicializarElementosGUIPanelPersona() {
+		
+	// -- Panel general de la lista de los alimentos -- //
+		
+		backgroundGeneralListaAlimentos = new JPanel();
+		backgroundGeneralListaAlimentos.setBackground(new Color(207, 186, 240));
+		backgroundGeneralListaAlimentos.setBounds(10, 104, 1015, 628);
+		JFrame.getContentPane().add(backgroundGeneralListaAlimentos);
+		backgroundGeneralListaAlimentos.setLayout(null);
 		
 	// -- Información -- //
 		
 		JLabel lblInfoLista = new JLabel("2.- Listado de los alimentos:");
 		lblInfoLista.setFont(new Font("Dialog", Font.BOLD, 13));
-		lblInfoLista.setBounds(438, 132, 184, 14);
-		JFrame.getContentPane().add(lblInfoLista);
+		lblInfoLista.setBounds(406, 11, 204, 14);
+		backgroundGeneralListaAlimentos.add(lblInfoLista);
 		
-		JLabel lblTotMacro = new JLabel("Valores totales de los macronutrientes:");
-		lblTotMacro.setFont(new Font("Dialog", Font.BOLD, 13));
-		lblTotMacro.setBounds(386, 572, 262, 14);
-		JFrame.getContentPane().add(lblTotMacro);
-		
-		
-	// -- Lista de los alimentos -- //
+	// -- Panel que contiene los alimentos creados -- //
 		
 		panelListaAlimentos = new JPanel();		
 		scroll = new JScrollPane(panelListaAlimentos);
 		panelListaAlimentos.setBackground(new Color(250, 209, 255));
 		panelListaAlimentos.setBackground(new Color(250, 209, 255));
-		panelListaAlimentos.setLayout(new GridLayout(0, 12, 5, 0));
-		scroll.setBounds(37, 174, 960, 333);		
-		JFrame.getContentPane().add(scroll);
-		
-		
-	// -- Energía total calculada -- //
-		
+		panelListaAlimentos.setLayout(new GridLayout(0, 12, 0, 5));
+		scroll.setBounds(26, 52, 967, 362);		
+		backgroundGeneralListaAlimentos.add(scroll);
+	}
+	
+	private void inicializarPanelCalculo() {
+		// -- Panel que contiene los resultados del calculo -- //	
+
+		JPanel backroundCalculo = new JPanel();
+		backroundCalculo.setBounds(26, 461, 963, 140);
+		backgroundGeneralListaAlimentos.add(backroundCalculo);
+		backroundCalculo.setBackground(new Color(250, 209, 255));
+		backroundCalculo.setLayout(null);
+
+		// -- Información del calculo -- //
+
+		JLabel lblTotMacro = new JLabel("Valores totales de los macronutrientes:");
+		lblTotMacro.setBounds(348, 14, 268, 18);
+		backroundCalculo.add(lblTotMacro);
+		lblTotMacro.setFont(new Font("Dialog", Font.BOLD, 13));
+
+		// -- Energía total calculada -- //
+
 		JLabel lblEngTot = new JLabel("Energ\u00EDa:");
 		lblEngTot.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblEngTot.setBounds(263, 615, 74, 19);
-		JFrame.getContentPane().add(lblEngTot);
-		
-		textFieldEnergiaTot = new JTextField();
-		textFieldEnergiaTot.setForeground(Color.BLACK);
-		textFieldEnergiaTot.setEditable(false);
-		textFieldEnergiaTot.setColumns(10);
-		textFieldEnergiaTot.setBackground(Color.WHITE);
-		textFieldEnergiaTot.setBounds(370, 614, 86, 20);
-		JFrame.getContentPane().add(textFieldEnergiaTot);
-		
-		JLabel lblNewLabelKcal = new JLabel("kcal");
-		lblNewLabelKcal.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNewLabelKcal.setBounds(459, 617, 46, 14);
-		JFrame.getContentPane().add(lblNewLabelKcal);
-		
-	// -- Grasas totales calculadas -- //
-		
-		JLabel lblGrasasTot = new JLabel("Grasas:");
-		lblGrasasTot.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGrasasTot.setBounds(571, 648, 74, 14);
-		JFrame.getContentPane().add(lblGrasasTot);
-		
-		textFieldGrasasTot = new JTextField();
-		textFieldGrasasTot.setBackground(Color.WHITE);
-		textFieldGrasasTot.setForeground(Color.BLACK);
-		textFieldGrasasTot.setEditable(false);
-		textFieldGrasasTot.setBounds(663, 645, 86, 20);
-		JFrame.getContentPane().add(textFieldGrasasTot);
-		textFieldGrasasTot.setColumns(10);
-		
-		JLabel lblGr = new JLabel("gr");
-		lblGr.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr.setBounds(459, 645, 46, 20);
-		JFrame.getContentPane().add(lblGr);
-		
-		
-	// -- Azúcares totales calculadas -- //
-		
-		JLabel lblAzucaresTot = new JLabel("Az\u00FAcares:");
-		lblAzucaresTot.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblAzucaresTot.setBounds(263, 648, 74, 14);
-		JFrame.getContentPane().add(lblAzucaresTot);
-		
-		textFieldAzucarTot = new JTextField();
-		textFieldAzucarTot.setBackground(Color.WHITE);
-		textFieldAzucarTot.setForeground(Color.BLACK);
-		textFieldAzucarTot.setEditable(false);
-		textFieldAzucarTot.setColumns(10);
-		textFieldAzucarTot.setBounds(370, 645, 86, 20);
-		JFrame.getContentPane().add(textFieldAzucarTot);
-		
-		JLabel lblGr2 = new JLabel("gr");
-		lblGr2.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr2.setBounds(752, 615, 46, 19);
-		JFrame.getContentPane().add(lblGr2);
-		
-		
-	// -- Sales totales calculadas -- //
-		
+		lblEngTot.setBounds(34, 63, 74, 19);
+		backroundCalculo.add(lblEngTot);
+
+		lblEnergiaTotCalc = new JLabel("-");
+		lblEnergiaTotCalc.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEnergiaTotCalc.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblEnergiaTotCalc.setBounds(88, 65, 74, 14);
+		backroundCalculo.add(lblEnergiaTotCalc);
+
+		JLabel lblKcal = new JLabel("kcal");
+		lblKcal.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblKcal.setBounds(172, 65, 46, 14);
+		backroundCalculo.add(lblKcal);
+
+		// -- Sales totales calculadas -- //
+
 		JLabel lblSalTot = new JLabel("Sal:");
 		lblSalTot.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblSalTot.setBounds(571, 617, 74, 14);
-		JFrame.getContentPane().add(lblSalTot);
-		
-		textFieldSalTot = new JTextField();
-		textFieldSalTot.setBackground(Color.WHITE);
-		textFieldSalTot.setForeground(Color.BLACK);
-		textFieldSalTot.setEditable(false);
-		textFieldSalTot.setColumns(10);
-		textFieldSalTot.setBounds(663, 614, 86, 20);
-		JFrame.getContentPane().add(textFieldSalTot);
-		
+		lblSalTot.setBounds(34, 93, 74, 14);
+		backroundCalculo.add(lblSalTot);
+
+		lblSalTotCalc = new JLabel("-");
+		lblSalTotCalc.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSalTotCalc.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblSalTotCalc.setBounds(88, 93, 74, 14);
+		backroundCalculo.add(lblSalTotCalc);
+
+		JLabel lblGr = new JLabel("gr");
+		lblGr.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblGr.setBounds(172, 91, 46, 19);
+		backroundCalculo.add(lblGr);		
+
+		// -- Grasas totales calculadas -- //
+
+		JLabel lblGrasasTot = new JLabel("Grasas:");
+		lblGrasasTot.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblGrasasTot.setBounds(222, 65, 74, 14);
+		backroundCalculo.add(lblGrasasTot);
+
+		lblGrasasTotCalc = new JLabel("-");
+		lblGrasasTotCalc.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblGrasasTotCalc.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblGrasasTotCalc.setBounds(333, 65, 74, 14);
+		backroundCalculo.add(lblGrasasTotCalc);
+
+		JLabel lblGr2 = new JLabel("gr");
+		lblGr2.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblGr2.setBounds(417, 62, 46, 20);
+		backroundCalculo.add(lblGr2);
+
+		// -- Grasas saturadas totales calculadas -- //
+
+		JLabel lblGrasasSatTot = new JLabel("Grasas saturadas:");
+		lblGrasasSatTot.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblGrasasSatTot.setBounds(222, 93, 153, 14);
+		backroundCalculo.add(lblGrasasSatTot);
+
+		lblGrasasSatTotCalc = new JLabel("-");
+		lblGrasasSatTotCalc.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblGrasasSatTotCalc.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblGrasasSatTotCalc.setBounds(333, 93, 74, 14);
+		backroundCalculo.add(lblGrasasSatTotCalc);
+
 		JLabel lblGr3 = new JLabel("gr");
 		lblGr3.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr3.setBounds(752, 646, 46, 19);
-		JFrame.getContentPane().add(lblGr3);
-		
-		
-	// -- Botón calcular -- //
-		
+		lblGr3.setBounds(417, 90, 46, 20);
+		backroundCalculo.add(lblGr3);
+
+		// -- Hidratos de carbono totales calculados -- //
+
+		JLabel lblHidratosCarbonoTot = new JLabel("Hidratos de carbono:");
+		lblHidratosCarbonoTot.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblHidratosCarbonoTot.setBounds(459, 65, 147, 14);
+		backroundCalculo.add(lblHidratosCarbonoTot);
+
+		lblHidratosCarbTotCalc = new JLabel("-");
+		lblHidratosCarbTotCalc.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblHidratosCarbTotCalc.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblHidratosCarbTotCalc.setBounds(590, 65, 74, 14);
+		backroundCalculo.add(lblHidratosCarbTotCalc);
+
+		JLabel lblGr4 = new JLabel("gr");
+		lblGr4.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblGr4.setBounds(674, 63, 46, 19);
+		backroundCalculo.add(lblGr4);
+
+		// -- Azúcares totales calculadas -- //
+
+		JLabel lblAzucaresTot = new JLabel("Az\u00FAcares:");
+		lblAzucaresTot.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblAzucaresTot.setBounds(459, 93, 74, 14);
+		backroundCalculo.add(lblAzucaresTot);
+
+		lblAzucarTotCalc = new JLabel("-");
+		lblAzucarTotCalc.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblAzucarTotCalc.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblAzucarTotCalc.setBounds(590, 93, 74, 14);
+		backroundCalculo.add(lblAzucarTotCalc);
+
+		JLabel lblGr5 = new JLabel("gr");
+		lblGr5.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblGr5.setBounds(674, 91, 46, 19);
+		backroundCalculo.add(lblGr5);
+
+		// -- Total de hierros calculados -- //
+
+		JLabel lblHierroTot = new JLabel("Hierro:");
+		lblHierroTot.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblHierroTot.setBounds(722, 65, 74, 14);
+		backroundCalculo.add(lblHierroTot);
+
+		lblHierroTotCalc = new JLabel("-");
+		lblHierroTotCalc.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblHierroTotCalc.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblHierroTotCalc.setBounds(787, 65, 74, 14);
+		backroundCalculo.add(lblHierroTotCalc);
+
+		JLabel lblGr6 = new JLabel("gr");
+		lblGr6.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblGr6.setBounds(871, 63, 46, 19);
+		backroundCalculo.add(lblGr6);
+
+		// -- Total de calcios calculados -- //
+
+		JLabel lblCalcioTot = new JLabel("Calcio:");
+		lblCalcioTot.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblCalcioTot.setBounds(722, 93, 74, 14);
+		backroundCalculo.add(lblCalcioTot);
+
+		lblCalcioTotCalc = new JLabel("-");
+		lblCalcioTotCalc.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCalcioTotCalc.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblCalcioTotCalc.setBounds(787, 93, 74, 14);
+		backroundCalculo.add(lblCalcioTotCalc);
+
+		JLabel lblGr7 = new JLabel("gr");
+		lblGr7.setFont(new Font("Dialog", Font.PLAIN, 14));
+		lblGr7.setBounds(871, 91, 46, 19);
+		backroundCalculo.add(lblGr7);
+
+		// -- Botón calcular -- //
+
 		JButton btnCalcular = new JButton("Calcular");
+		btnCalcular.setBounds(460, 427, 96, 23);
+		backgroundGeneralListaAlimentos.add(btnCalcular);
 		btnCalcular.addActionListener(new ActionListener() {
 			/**
 			 * Comprueba que los TextField del panel persona estan todos rellenos sino muestra una ventana de dialogo para informar al usuario
 			 * Inicializa el usuario con los datos en el panel persona
-			 * Calcula el desglose de los macronutrientes adecuado para la persona creada
+			 * Calcula el desglose de los macronutrientes para la persona creada
 			 * Pinta el desglose en los campos correspondientes de la GUI
 			 * 
 			 * @author Marta
@@ -638,86 +738,25 @@ public class CalculadoraMacronutrientes {
 				}
 				else {
 					usuario = crearPersona();				
-					Calculadora calculadora;
 
-					if(usuario.getGenero().equals(Genero.FEMENINO)) {
-						calculadora = new CalculadoraMujer();
-					}
-					else {
-						calculadora = new CalculadoraHombre();
-						System.out.println("Soy hombre");
-					}
-					
-					DistribucionMacronutrientes desgloseMacrosUsuario = calculadora.calculoHabitosCorrectos(usuario);
+					DistribucionMacronutrientes desgloseMacrosUsuario = calculateDesgloseMacrosUsuario();
 					paintDesgloseMacrosUsuario(desgloseMacrosUsuario);
 				}
 			}
 		});
 		btnCalcular.setBackground(new Color(209, 211, 242));
-		btnCalcular.setBounds(499, 520, 89, 23);
-		JFrame.getContentPane().add(btnCalcular);
-		
-		
-	// -- Panel (backrground) de la lista de alimentos -- //
-		
-		JTextPane backroundCalculo = new JTextPane();
-		backroundCalculo.setEditable(false);
-		backroundCalculo.setBackground(new Color(250, 209, 255));
-		backroundCalculo.setBounds(37, 554, 960, 143);
-		JFrame.getContentPane().add(backroundCalculo);
-		
-		JTextPane backgroundListado = new JTextPane();
-		backgroundListado.setEditable(false);
-		backgroundListado.setBackground(new Color(207, 186, 240));
-		backgroundListado.setBounds(10, 104, 1015, 628);
-		JFrame.getContentPane().add(backgroundListado);
-		
-	}
-	
-	private void initializeVerifiers() {
-		positiveDoubleVerifier = new PositiveDoubleVerifier();
-		positiveIntVerifier = new PositiveIntVerifier();
 	}
 	
 	/**
-	 * Recoge la información de los textFields y crea un nuevo objeto de la clase Persona
-	 * para poder settearle la información recogida de los textFields.
-	 * 
-	 * @return objeto persona creada con la información correspondiente.
-	 * @author Ana
+	 * Inicializa el panelListaAlimentos
+	 * @author Marta
 	 */
-	private Persona crearPersona() {		
-		Persona persona = new Persona();
-
-
-	// --Obtener la información de los TextFields-- //
-
-		String nombreS = textFieldNombrePers.getText();
-		String edadS = textFieldEdad.getText();
-		String pesoS = textFieldPeso.getText();
-		String alturaS = textFieldAltura.getText();
-		ActividadFisica actFisicaS = (ActividadFisica) comboBoxActFisica.getSelectedItem();
-		Genero generoS = (Genero) comboBoxGenero.getSelectedItem();
-
-
-	// --Convertir Strings en ints-- //
-
-		Integer edad = Integer.parseInt(edadS);
-		Integer peso = Integer.parseInt(pesoS);
-		Integer altura = Integer.parseInt(alturaS);
-
-
-	// --Settear la información para el objeto Persona-- //
-
-		persona.setNombre(nombreS);
-		persona.setEdad(edad);
-		persona.setPeso(peso);
-		persona.setAltura(altura);
-		persona.setActividadFisica(actFisicaS);
-		persona.setGenero(generoS);
-		persona.setAlimentosDiarios(alimentosCantidad);
-
-		return persona;
+	private void intializePanelListaAlimentos() {
+		inicializarElementosGUIPanelPersona();
+		paintCabeceraPanelListaAlimentos();
+		inicializarListaAlimentosDefault();
+		paintRowsAlimentosDefault();		
+		disableButtonsPanelListaAlimentos();
 	}
 	
 	/**
@@ -727,7 +766,7 @@ public class CalculadoraMacronutrientes {
 	 * @return objeto alimento creado con la información correspondiente.
 	 * @author Ana
 	 */
-	private Alimento crearAlimento() {
+	private Alimento crearAlimento() throws IllegalArgumentException{		
 		Alimento alimento = new Alimento();
 		String nombre = textFieldNombreAlimento.getText();
 		String energiaS = textFieldEnergia.getText();
@@ -737,8 +776,10 @@ public class CalculadoraMacronutrientes {
 		String saturadasS = textFieldSaturadas.getText();
 		String proteinasS = textFieldProteinas.getText();
 		String salS = textFieldSal.getText();
-		
-		
+		String hierroS = textFieldHierro.getText();
+		String calcioS = textFieldCalcio.getText();
+
+
 		Double energia = Double.parseDouble(energiaS);
 		Double hidratos = Double.parseDouble(hidratosS);
 		Double azucar = Double.parseDouble(azucarS);
@@ -746,7 +787,9 @@ public class CalculadoraMacronutrientes {
 		Double saturadas = Double.parseDouble(saturadasS);
 		Double proteinas = Double.parseDouble(proteinasS);
 		Double sal = Double.parseDouble(salS);
-		
+		Double hierro = Double.parseDouble(hierroS);
+		Double calcio = Double.parseDouble(calcioS);
+
 		alimento.setNombre(nombre);
 		alimento.setEnergia(energia);
 		alimento.setHidratosCarbono(hidratos);
@@ -754,7 +797,9 @@ public class CalculadoraMacronutrientes {
 		alimento.setGrasas(grasas);
 		alimento.setGrasasSaturadas(saturadas);
 		alimento.setProteinas(proteinas);
-		alimento.setSal(sal);		
+		alimento.setSal(sal);
+		alimento.setHierro(hierro);
+		alimento.setCalcio(calcio);
 
 		return alimento;
 	}
@@ -774,82 +819,49 @@ public class CalculadoraMacronutrientes {
 		textFieldProteinas.setText("");
 		textFieldSal.setText("");
 		textFieldCalcio.setText("");
+		textFieldVitaminas.setText("");
 		textFieldHierro.setText("");
 	}
 
-	private void intializePanelListaAlimentos() {
-		paintCabeceraPanelListaAlimentos();
-		inicializarListaAlimentosDefault();
-		//Pintar lista alimentos		
-		disableButtonsPanelListaAlimentos(); 
-	}
-	
 	/**
-	 * Pinta en la GUI la cabecera de panelListaAlimentos
-	 * @author Marta
+	 * Recoge la información de los textFields y crea un nuevo objeto de la clase Persona
+	 * para poder settearle la información recogida de los textFields.
+	 * 
+	 * @return objeto persona creada con la información correspondiente.
+	 * @author Ana
 	 */
-	private void paintCabeceraPanelListaAlimentos() {
-		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		panelListaAlimentos.add(lblNombre);
+	private Persona crearPersona() {		
+		Persona persona = new Persona();
 
-		JLabel lblCantidad = new JLabel("Gramos consumidos");
-		lblCantidad.setHorizontalAlignment(SwingConstants.CENTER);
-		panelListaAlimentos.add(lblCantidad);
 
-		JLabel lblEnergia = new JLabel("Kcal");
-		lblEnergia.setHorizontalAlignment(SwingConstants.CENTER);
-		panelListaAlimentos.add(lblEnergia);
+		// --Obtener la informaciÃ³n de los TextFields-- //
 
-		JLabel lblHidratosCarbono = new JLabel("Hidratos de Carbono");
-		lblHidratosCarbono.setHorizontalAlignment(SwingConstants.CENTER);
-		panelListaAlimentos.add(lblHidratosCarbono);
+		String nombreS = textFieldNombrePers.getText();
+		String edadS = textFieldEdad.getText();
+		String pesoS = textFieldPeso.getText();
+		String alturaS = textFieldAltura.getText();
+		ActividadFisica actFisicaS = (ActividadFisica) comboBoxActFisica.getSelectedItem();
+		Genero generoS = (Genero) comboBoxSexo.getSelectedItem();
 
-		JLabel lblAzucar = new JLabel("Azucar");
-		lblAzucar.setHorizontalAlignment(SwingConstants.CENTER);
-		panelListaAlimentos.add(lblAzucar);
 
-		JLabel lblGrasas = new JLabel("Grasas");
-		lblGrasas.setHorizontalAlignment(SwingConstants.CENTER);
-		panelListaAlimentos.add(lblGrasas);
+		// --Convertir Strings en ints-- //
 
-		JLabel lblGrasasSaturadas = new JLabel("Grasas saturadas");
-		lblGrasasSaturadas.setHorizontalAlignment(SwingConstants.CENTER);
-		panelListaAlimentos.add(lblGrasasSaturadas);
+		Integer edad = Integer.parseInt(edadS);
+		Integer peso = Integer.parseInt(pesoS);
+		Integer altura = Integer.parseInt(alturaS);
 
-		JLabel lblProteinas = new JLabel("Proteinas");
-		lblProteinas.setHorizontalAlignment(SwingConstants.CENTER);
-		panelListaAlimentos.add(lblProteinas);
 
-		JLabel lblSal = new JLabel("Sal");
-		lblSal.setHorizontalAlignment(SwingConstants.CENTER);
-		panelListaAlimentos.add(lblSal);
+		// --Settear la informaciÃ³n para el objeto Persona-- //
 
-		JLabel lblCalcio = new JLabel("Calcio");
-		lblCalcio.setHorizontalAlignment(SwingConstants.CENTER);
-		panelListaAlimentos.add(lblCalcio);
+		persona.setNombre(nombreS);
+		persona.setEdad(edad);
+		persona.setPeso(peso);
+		persona.setAltura(altura);
+		persona.setActividadFisica(actFisicaS);
+		persona.setGenero(generoS);
+		persona.setAlimentosDiarios(alimentosCantidad);
 
-		JLabel lblHierro = new JLabel("Hierro");
-		lblHierro.setHorizontalAlignment(SwingConstants.CENTER);
-		panelListaAlimentos.add(lblHierro);
-
-		JLabel lblEliminar = new JLabel("Eliminar");
-		lblEliminar.setHorizontalAlignment(SwingConstants.CENTER);
-		panelListaAlimentos.add(lblEliminar);
-	}
-	
-	/**
-	 * Deshabilita todos los botones de panelListaAlimentos creados antes de la llamada a este metodo
-	 * @author Marta
-	 */
-	private void disableButtonsPanelListaAlimentos() {
-		Component[] comp = panelListaAlimentos.getComponents();
-		for(int i = 0; i < comp.length; i++) {
-			if(comp[i] instanceof JButton) {
-				JButton button = (JButton) comp[i];
-				button.setEnabled(false);
-			}
-		}
+		return persona;
 	}
 
 	/**
@@ -1010,7 +1022,9 @@ public class CalculadoraMacronutrientes {
 				alimentos.remove(alimento);
 			}
 		});
+
 	}	
+	
 
 	/**
 	 * Devuelve true si el string de algun TextField del panel persona esta vacio o solo contiene espacios en blanco, sino false
@@ -1031,7 +1045,64 @@ public class CalculadoraMacronutrientes {
 
 		return nombreNotValid || edadNotValid || alturaNotValid || pesoNotValid;		
 	}
-	
+
+	/**
+	 * Muestra en la GUI el desglose de macronutrientes del usuario y su IMC. 
+	 * Los valores se mostraran con el formato decimal "#.##"
+	 * Si los valores son mayores a los recomendados seran mostrados en rojo si no seran mostrados en negro
+	 * 
+	 * @param desgloseMacrosUsuario el desglose de los macronutrientes del usuario 
+	 * @author Marta
+	 */
+	private void paintDesgloseMacrosUsuario(DistribucionMacronutrientes desgloseMacrosUsuario) {
+		DecimalFormat dformat = new DecimalFormat("#.##");
+
+		//Energia
+		double energiaTotal = desgloseMacrosUsuario.getEnergiaTotal();
+		String energiaTotalText = dformat.format(energiaTotal);
+		lblEnergiaTotCalc.setText(energiaTotalText);
+
+		if(!desgloseMacrosUsuario.isCantidadEnergiaAdecuada()) {
+			lblEnergiaTotCalc.setForeground(Color.red);
+		}
+		else lblEnergiaTotCalc.setForeground(Color.black);
+
+		//Azucar
+		double azucarTotal = desgloseMacrosUsuario.getAzucarTotal();
+		String azucarTotalText = dformat.format(azucarTotal);
+		lblAzucarTotCalc.setText(azucarTotalText);
+
+		if(!desgloseMacrosUsuario.isCantidadAzucarAdecuada()) {
+			lblAzucarTotCalc.setForeground(Color.red);
+		}
+		else lblAzucarTotCalc.setForeground(Color.black);
+
+		//Grasas
+		double grasasTotales = desgloseMacrosUsuario.getGrasasTotales();
+		String grasasTotalesText = dformat.format(grasasTotales);
+		lblGrasasTotCalc.setText(grasasTotalesText);
+
+		if(!desgloseMacrosUsuario.isCantidadGrasasAdecuada()) {
+			lblGrasasTotCalc.setForeground(Color.red);
+		}
+		else lblGrasasTotCalc.setForeground(Color.black);
+
+		//Sal
+		double salTotal = desgloseMacrosUsuario.getSalTotal();
+		String salTotalText = dformat.format(salTotal);
+		lblSalTotCalc.setText(salTotalText);
+
+		if(!desgloseMacrosUsuario.isCantidadSalAdecuada()) {
+			lblSalTotCalc.setForeground(Color.red);
+		}
+		else lblSalTotCalc.setForeground(Color.black);
+
+		//IMC
+		double imc = usuario.getImc();
+		String imcText = dformat.format(imc);
+		lblResultImc.setText(imcText);
+	}
+
 	/**
 	 * Calcula el total de macronutrientes ingeridos por el usuario teniendo en cuenta si es hombre o mujer
 	 * 
@@ -1053,64 +1124,74 @@ public class CalculadoraMacronutrientes {
 
 		return desgloseMacrosUsuario;
 	}
-	
+
 	/**
-	 * Muestra en la GUI el desglose de macronutrientes del usuario y su IMC. 
-	 * Los valores se mostraran con el formato decimal "#.##"
-	 * Si los valores son mayores a los recomendados seran mostrados en rojo si no seran mostrados en negro
-	 * 
-	 * @param desgloseMacrosUsuario el desglose de los macronutrientes del usuario 
+	 * Pinta en la GUI la cabecera de panelListaAlimentos
 	 * @author Marta
 	 */
-	private void paintDesgloseMacrosUsuario(DistribucionMacronutrientes desgloseMacrosUsuario) {
-		DecimalFormat dformat = new DecimalFormat("#.##");
+	private void paintCabeceraPanelListaAlimentos() {
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		panelListaAlimentos.add(lblNombre);
 
-		//Energia
-		double energiaTotal = desgloseMacrosUsuario.getEnergiaTotal();
-		String energiaTotalText = dformat.format(energiaTotal);
-		textFieldEnergiaTot.setText(energiaTotalText);
+		JLabel lblCantidad = new JLabel("Gramos consumidos");
+		lblCantidad.setHorizontalAlignment(SwingConstants.CENTER);
+		panelListaAlimentos.add(lblCantidad);
 
-		if(!desgloseMacrosUsuario.isCantidadEnergiaAdecuada()) {
-			textFieldEnergiaTot.setForeground(Color.red);
-		}
-		else textFieldEnergiaTot.setForeground(Color.black);
+		JLabel lblEnergia = new JLabel("Kcal");
+		lblEnergia.setHorizontalAlignment(SwingConstants.CENTER);
+		panelListaAlimentos.add(lblEnergia);
 
-		//Azucar
-		double azucarTotal = desgloseMacrosUsuario.getAzucarTotal();
-		String azucarTotalText = dformat.format(azucarTotal);
-		textFieldAzucarTot.setText(azucarTotalText);
+		JLabel lblHidratosCarbono = new JLabel("Hidratos de Carbono");
+		lblHidratosCarbono.setHorizontalAlignment(SwingConstants.CENTER);
+		panelListaAlimentos.add(lblHidratosCarbono);
 
-		if(!desgloseMacrosUsuario.isCantidadAzucarAdecuada()) {
-			textFieldAzucarTot.setForeground(Color.red);
-		}
-		else textFieldAzucarTot.setForeground(Color.black);
+		JLabel lblAzucar = new JLabel("Azucar");
+		lblAzucar.setHorizontalAlignment(SwingConstants.CENTER);
+		panelListaAlimentos.add(lblAzucar);
 
-		//Grasas
-		double grasasTotales = desgloseMacrosUsuario.getGrasasTotales();
-		String grasasTotalesText = dformat.format(grasasTotales);
-		textFieldGrasasTot.setText(grasasTotalesText);
+		JLabel lblGrasas = new JLabel("Grasas");
+		lblGrasas.setHorizontalAlignment(SwingConstants.CENTER);
+		panelListaAlimentos.add(lblGrasas);
 
-		if(!desgloseMacrosUsuario.isCantidadGrasasAdecuada()) {
-			textFieldGrasasTot.setForeground(Color.red);
-		}
-		else textFieldGrasasTot.setForeground(Color.black);
+		JLabel lblGrasasSaturadas = new JLabel("Grasas saturadas");
+		lblGrasasSaturadas.setHorizontalAlignment(SwingConstants.CENTER);
+		panelListaAlimentos.add(lblGrasasSaturadas);
 
-		//Sal
-		double salTotal = desgloseMacrosUsuario.getSalTotal();
-		String salTotalText = dformat.format(salTotal);
-		textFieldSalTot.setText(salTotalText);
+		JLabel lblProteinas = new JLabel("Proteinas");
+		lblProteinas.setHorizontalAlignment(SwingConstants.CENTER);
+		panelListaAlimentos.add(lblProteinas);
 
-		if(!desgloseMacrosUsuario.isCantidadSalAdecuada()) {
-			textFieldSalTot.setForeground(Color.red);
-		}
-		else textFieldSalTot.setForeground(Color.black);
+		JLabel lblSal = new JLabel("Sal");
+		lblSal.setHorizontalAlignment(SwingConstants.CENTER);
+		panelListaAlimentos.add(lblSal);
 
-		//IMC
-		double imc = usuario.getImc();
-		String imcText = dformat.format(imc);
-		textFieldImc.setText(imcText);
+		JLabel lblCalcio = new JLabel("Calcio");
+		lblCalcio.setHorizontalAlignment(SwingConstants.CENTER);
+		panelListaAlimentos.add(lblCalcio);
+
+		JLabel lblHierro = new JLabel("Hierro");
+		lblHierro.setHorizontalAlignment(SwingConstants.CENTER);
+		panelListaAlimentos.add(lblHierro);
+
+		JLabel lblEliminar = new JLabel("Eliminar");
+		lblEliminar.setHorizontalAlignment(SwingConstants.CENTER);
+		panelListaAlimentos.add(lblEliminar);
 	}
-	
+
+	/**
+	 * Deshabilita todos los botones de panelListaAlimentos creados antes de la llamada a este metodo
+	 * @author Marta
+	 */
+	private void disableButtonsPanelListaAlimentos() {
+		Component[] comp = panelListaAlimentos.getComponents();
+		for(int i = 0; i < comp.length; i++) {
+			if(comp[i] instanceof JButton) {
+				JButton button = (JButton) comp[i];
+				button.setEnabled(false);
+			}
+		}
+	}
 	
 	/**
 	 * Crea los alimentos que por defecto estarñan en la lista de alimentos.
@@ -1206,18 +1287,19 @@ public class CalculadoraMacronutrientes {
         alimentos.add(cerealesArrozChocolate);
         alimentos.add(ketchup);
         
-        
-        // -- Pintar los alimentos deffault -- //
-       
-        paintRowsAlimentosDefault();
-
 	}
 	
+	/**
+	 * Pinta los alimentos creados por defecto.
+	 * 
+	 * @author Ana
+	 */
 	private void paintRowsAlimentosDefault() {
 		for(int i= 0; i < alimentos.size(); i++) {
 			 Alimento alimento = alimentos.get(i);
 			addRowAlimento(alimento);
 		}
 	}
-	
 }
+
+
