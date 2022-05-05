@@ -35,17 +35,25 @@ public abstract class Calculadora {
 	protected DistribucionMacronutrientes calculoIngestaDiaria(Persona persona) {
 		DistribucionMacronutrientes solucion = new DistribucionMacronutrientes();
 
-		ArrayList<AlimentoCantidad> alimentosDiarios = persona.getAlimentosDiarios();
+		ArrayList<AlimentoCantidad> alimentosDiarios = persona.getAlimentosDiarios();		
 		
-		double energiaTotal  = calculoEnergiaTotal(alimentosDiarios);		
-		double grasasTotales = calculoGrasasTotales(alimentosDiarios);
-		double azucarTotal   = calculoAzucarTotal(alimentosDiarios);
-		double salTotal 	 = calculoSalTotal(alimentosDiarios);
+		double energiaTotal   = calculoEnergiaTotal(alimentosDiarios);		
+		double grasasTotales  = calculoGrasasTotales(alimentosDiarios);
+		double azucarTotal    = calculoAzucarTotal(alimentosDiarios);
+		double salTotal 	  = calculoSalTotal(alimentosDiarios);
+		double hidratosTotal  = calculoHidratosTotal(alimentosDiarios);
+		double saturadasTotal = calculoSaturadasTotal(alimentosDiarios);
+		double calcioTotal    = calculoCalcioTotal(alimentosDiarios);
+		double hierroTotal    = calculoHierroTotal(alimentosDiarios);
 				
 		solucion.setEnergiaTotal(energiaTotal);
 		solucion.setGrasasTotales(grasasTotales);
 		solucion.setAzucarTotal(azucarTotal);
 		solucion.setSalTotal(salTotal);
+		solucion.setHidratosCarbonoTotales(hidratosTotal);
+		solucion.setGrasasSaturadasTotales(saturadasTotal);
+		solucion.setCalcioTotal(calcioTotal);
+		solucion.setHierroTotal(hierroTotal);
 
 		return solucion;		
 	}
@@ -79,7 +87,7 @@ public abstract class Calculadora {
 	 * Para obtener el total se hace una regla de tres por cada alimento entre los gramos consumidos y el ESTANDAR_GRAMOS
 	 * 
 	 * @param alimentosDiarios
-	 * @return
+	 * @return grasas totales ingeridas
 	 */
 	private double calculoGrasasTotales(ArrayList<AlimentoCantidad> alimentosDiarios) {
 		double total = 0;
@@ -103,7 +111,7 @@ public abstract class Calculadora {
 	 * Para obtener el total se hace una regla de tres por cada alimento entre los gramos consumidos y el ESTANDAR_GRAMOS 
 	 * 
 	 * @param alimentosDiarios
-	 * @return
+	 * @return azucar total ingerido
 	 */
 	private double calculoAzucarTotal(ArrayList<AlimentoCantidad> alimentosDiarios) {
 		double total = 0;
@@ -127,7 +135,7 @@ public abstract class Calculadora {
 	 * Para obtener el total se hace una regla de tres por cada alimento entre los gramos consumidos y el ESTANDAR_GRAMOS
 	 * 
 	 * @param alimentosDiarios
-	 * @return
+	 * @return sal total ingerida
 	 */
 	private double calculoSalTotal(ArrayList<AlimentoCantidad> alimentosDiarios) {
 		double total = 0;
@@ -141,6 +149,102 @@ public abstract class Calculadora {
 			
 			double salConsumida = (gramosConsumidos * sal100gr) / ESTANDAR_GRAMOS;
 			total += salConsumida;
+		}
+		
+		return total;
+	}
+	
+	/**
+	 * Calcula la suma total de hidratos consumidos por una persona dado un ArrayList<AlimentoCantidad>
+	 * Para obtener el total se hace una regla de tres por cada alimento entre los gramos consumidos y el ESTANDAR_GRAMOS
+	 * 
+	 * @param alimentosDiarios
+	 * @return hidratos de carbono totales ingeridos
+	 */
+	private double calculoHidratosTotal(ArrayList<AlimentoCantidad> alimentosDiarios) {
+		double total = 0;
+		
+		for(int i = 0; i < alimentosDiarios.size(); i++) {
+			AlimentoCantidad alimentoCantidad = alimentosDiarios.get(i);
+			
+			Alimento alimento = alimentoCantidad.getAlimento();
+			int gramosConsumidos = alimentoCantidad.getGramos();			
+			double hidratos100gr = alimento.getHidratosCarbono();
+			
+			double hidratosConsumidos = (gramosConsumidos * hidratos100gr) / ESTANDAR_GRAMOS;
+			total += hidratosConsumidos;
+		}
+		
+		return total;
+	}
+	
+	/**
+	 * Calcula la suma total de las grasas saturadas consumidas por una persona dado un ArrayList<AlimentoCantidad>
+	 * Para obtener el total se hace una regla de tres por cada alimento entre los gramos consumidos y el ESTANDAR_GRAMOS
+	 * 
+	 * @param alimentosDiarios
+	 * @return grasas saturadas totales ingeridas
+	 */
+	private double calculoSaturadasTotal(ArrayList<AlimentoCantidad> alimentosDiarios) {
+		double total = 0;
+		
+		for(int i = 0; i < alimentosDiarios.size(); i++) {
+			AlimentoCantidad alimentoCantidad = alimentosDiarios.get(i);
+			
+			Alimento alimento = alimentoCantidad.getAlimento();
+			int gramosConsumidos = alimentoCantidad.getGramos();			
+			double hidratos100gr = alimento.getHidratosCarbono();
+			
+			double hidratosConsumidos = (gramosConsumidos * hidratos100gr) / ESTANDAR_GRAMOS;
+			total += hidratosConsumidos;
+		}
+		
+		return total;
+	}
+	
+	/**
+	 * Calcula la suma total de hierro consumido por una persona dado un ArrayList<AlimentoCantidad>
+	 * Para obtener el total se hace una regla de tres por cada alimento entre los gramos consumidos y el ESTANDAR_GRAMOS
+	 * 
+	 * @param alimentosDiarios
+	 * @return hierro total ingerido
+	 */
+	private double calculoHierroTotal(ArrayList<AlimentoCantidad> alimentosDiarios) {
+		double total = 0;
+		
+		for(int i = 0; i < alimentosDiarios.size(); i++) {
+			AlimentoCantidad alimentoCantidad = alimentosDiarios.get(i);
+			
+			Alimento alimento = alimentoCantidad.getAlimento();
+			int gramosConsumidos = alimentoCantidad.getGramos();			
+			double hierro100gr = alimento.getHierro();
+			
+			double hierroConsumido = (gramosConsumidos * hierro100gr) / ESTANDAR_GRAMOS;
+			total += hierroConsumido;
+		}
+		
+		return total;
+	}
+	
+	/**
+	 * Calcula la suma total de calcio consumido por una persona dado un ArrayList<AlimentoCantidad>
+	 * Para obtener el total se hace una regla de tres por cada alimento entre los gramos consumidos y el ESTANDAR_GRAMOS
+	 * 
+	 * @param alimentosDiarios
+	 * @return calcio total consumido
+	 */
+	private double calculoCalcioTotal(ArrayList<AlimentoCantidad> alimentosDiarios) {
+		double total = 0;
+		
+		for(int i = 0; i < alimentosDiarios.size(); i++) {
+			AlimentoCantidad alimentoCantidad = alimentosDiarios.get(i);
+			
+			Alimento alimento = alimentoCantidad.getAlimento();
+			int gramosConsumidos = alimentoCantidad.getGramos();			
+			double calcio100gr = alimento.getCalcio();
+			
+			double calcioConsumido = (gramosConsumidos * calcio100gr) / ESTANDAR_GRAMOS;
+			total += calcioConsumido;
 		}
 		
 		return total;
