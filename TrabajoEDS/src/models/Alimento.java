@@ -1,4 +1,4 @@
-package trabajoEDS;
+package models;
 
 /**
  * Representa 100 gr de un alimento

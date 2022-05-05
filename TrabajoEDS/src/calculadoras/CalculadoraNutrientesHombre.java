@@ -1,8 +1,8 @@
-package calculable;
+package calculadoras;
 
-import trabajoEDS.*;
+import models.*;
 
-public class CalculadoraHombre extends Calculadora{
+public class CalculadoraNutrientesHombre extends CalculadoraNutrientes{
 	@Override
 	public DistribucionMacronutrientes calculoHabitosCorrectos(Persona persona) {
 		// TODO Auto-generated method stub

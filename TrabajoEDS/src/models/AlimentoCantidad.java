@@ -1,4 +1,4 @@
-package trabajoEDS;
+package models;
 
 /**
  * Relaciona un Alimento con los gramos consumidos de este

@@ -1,4 +1,4 @@
-package trabajoEDS;
+package models;
 
 /**
  * Representa la distribucion de los macronutrientes totales consumidos en un dia y si estas cantidades son adecuadas o no

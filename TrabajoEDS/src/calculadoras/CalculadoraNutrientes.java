@@ -1,18 +1,18 @@
-package calculable;
+package calculadoras;
 
 import java.util.ArrayList;
 
-import trabajoEDS.Alimento;
-import trabajoEDS.AlimentoCantidad;
-import trabajoEDS.Persona;
-import trabajoEDS.DistribucionMacronutrientes;
+import models.Alimento;
+import models.AlimentoCantidad;
+import models.DistribucionMacronutrientes;
+import models.Persona;
 
 /**
  * Calculadora es la clase abstracta base para todas las calculadoras de macronutrientes
  * @author Marta
  *
  */
-public abstract class Calculadora {
+public abstract class CalculadoraNutrientes {
 	/**
 	 * Constante que representa 100gr
 	 */
@@ -22,7 +22,7 @@ public abstract class Calculadora {
 	 * Constructor vacio
 	 * Utilizado por los constructores de las subclases, normalmente implicito
 	 */
-	protected Calculadora() {}
+	protected CalculadoraNutrientes() {}
 	
 	public abstract DistribucionMacronutrientes calculoHabitosCorrectos(Persona persona);
 	

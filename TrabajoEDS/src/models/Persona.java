@@ -1,4 +1,4 @@
-package trabajoEDS;
+package models;
 import java.util.ArrayList;
 
 /**

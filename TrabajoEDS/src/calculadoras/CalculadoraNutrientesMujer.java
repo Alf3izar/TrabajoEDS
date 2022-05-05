@@ -1,10 +1,8 @@
-package calculable;
+package calculadoras;
 
-import java.util.ArrayList;
+import models.*;
 
-import trabajoEDS.*;
-
-public class CalculadoraMujer extends Calculadora{
+public class CalculadoraNutrientesMujer extends CalculadoraNutrientes{
 	@Override
 	public DistribucionMacronutrientes calculoHabitosCorrectos(Persona persona) {
 		

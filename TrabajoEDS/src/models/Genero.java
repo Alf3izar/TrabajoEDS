@@ -1,4 +1,4 @@
-package trabajoEDS;
+package models;
 
 /**
  * Enumeracion de generos
