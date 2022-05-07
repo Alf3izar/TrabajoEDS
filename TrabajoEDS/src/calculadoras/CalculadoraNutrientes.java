@@ -72,7 +72,7 @@ public abstract class CalculadoraNutrientes {
 			AlimentoCantidad alimentoCantidad = alimentosDiarios.get(i);
 			
 			Alimento alimento = alimentoCantidad.getAlimento();
-			int gramosConsumidos = alimentoCantidad.getGramos();			
+			double gramosConsumidos = alimentoCantidad.getGramos();			
 			double energia100gr = alimento.getEnergia();
 			
 			double energiaConsumida = (gramosConsumidos * energia100gr) / ESTANDAR_GRAMOS;
@@ -96,7 +96,7 @@ public abstract class CalculadoraNutrientes {
 			AlimentoCantidad alimentoCantidad = alimentosDiarios.get(i);
 			
 			Alimento alimento = alimentoCantidad.getAlimento();
-			int gramosConsumidos = alimentoCantidad.getGramos();			
+			double gramosConsumidos = alimentoCantidad.getGramos();			
 			double grasas100gr = alimento.getGrasas();
 			
 			double grasasConsumidas = (gramosConsumidos * grasas100gr) / ESTANDAR_GRAMOS;
@@ -120,7 +120,7 @@ public abstract class CalculadoraNutrientes {
 			AlimentoCantidad alimentoCantidad = alimentosDiarios.get(i);
 			
 			Alimento alimento = alimentoCantidad.getAlimento();
-			int gramosConsumidos = alimentoCantidad.getGramos();			
+			double gramosConsumidos = alimentoCantidad.getGramos();			
 			double azucar100gr = alimento.getAzucar();
 			
 			double azucarConsumido = (gramosConsumidos * azucar100gr) / ESTANDAR_GRAMOS;
@@ -144,7 +144,7 @@ public abstract class CalculadoraNutrientes {
 			AlimentoCantidad alimentoCantidad = alimentosDiarios.get(i);
 			
 			Alimento alimento = alimentoCantidad.getAlimento();
-			int gramosConsumidos = alimentoCantidad.getGramos();			
+			double gramosConsumidos = alimentoCantidad.getGramos();			
 			double sal100gr = alimento.getSal();
 			
 			double salConsumida = (gramosConsumidos * sal100gr) / ESTANDAR_GRAMOS;
@@ -168,7 +168,7 @@ public abstract class CalculadoraNutrientes {
 			AlimentoCantidad alimentoCantidad = alimentosDiarios.get(i);
 			
 			Alimento alimento = alimentoCantidad.getAlimento();
-			int gramosConsumidos = alimentoCantidad.getGramos();			
+			double gramosConsumidos = alimentoCantidad.getGramos();			
 			double hidratos100gr = alimento.getHidratosCarbono();
 			
 			double hidratosConsumidos = (gramosConsumidos * hidratos100gr) / ESTANDAR_GRAMOS;
@@ -192,7 +192,7 @@ public abstract class CalculadoraNutrientes {
 			AlimentoCantidad alimentoCantidad = alimentosDiarios.get(i);
 			
 			Alimento alimento = alimentoCantidad.getAlimento();
-			int gramosConsumidos = alimentoCantidad.getGramos();			
+			double gramosConsumidos = alimentoCantidad.getGramos();			
 			double hidratos100gr = alimento.getHidratosCarbono();
 			
 			double hidratosConsumidos = (gramosConsumidos * hidratos100gr) / ESTANDAR_GRAMOS;
@@ -216,7 +216,7 @@ public abstract class CalculadoraNutrientes {
 			AlimentoCantidad alimentoCantidad = alimentosDiarios.get(i);
 			
 			Alimento alimento = alimentoCantidad.getAlimento();
-			int gramosConsumidos = alimentoCantidad.getGramos();			
+			double gramosConsumidos = alimentoCantidad.getGramos();			
 			double hierro100gr = alimento.getHierro();
 			
 			double hierroConsumido = (gramosConsumidos * hierro100gr) / ESTANDAR_GRAMOS;
@@ -240,7 +240,7 @@ public abstract class CalculadoraNutrientes {
 			AlimentoCantidad alimentoCantidad = alimentosDiarios.get(i);
 			
 			Alimento alimento = alimentoCantidad.getAlimento();
-			int gramosConsumidos = alimentoCantidad.getGramos();			
+			double gramosConsumidos = alimentoCantidad.getGramos();			
 			double calcio100gr = alimento.getCalcio();
 			
 			double calcioConsumido = (gramosConsumidos * calcio100gr) / ESTANDAR_GRAMOS;

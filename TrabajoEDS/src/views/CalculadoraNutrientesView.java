@@ -991,7 +991,7 @@ public class CalculadoraNutrientesView {
 				String gramosConsumidosText = gramosConsumidos.getText();
 				
 				if(!gramosConsumidosText.isBlank()) {					
-					int gramosConsumidos = Integer.parseInt(gramosConsumidosText);
+					double gramosConsumidos = Double.parseDouble(gramosConsumidosText);
 					alimentoCantidad.setGramos(gramosConsumidos);
 				}
 				

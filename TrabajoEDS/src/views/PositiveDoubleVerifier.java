@@ -22,7 +22,7 @@ public class PositiveDoubleVerifier extends InputVerifier{
 			if(text.isEmpty()) {
 				return true;
 			}
-			
+			textField.setText(beautifyText(text));
 			return parse(input, text);
 		}
 		return true;

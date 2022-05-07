@@ -14,7 +14,7 @@ public class AlimentoCantidad {
 	/**
 	 * Gramos consumidos del alimento
 	 */
-	int gramos;
+	double gramos;
 	
 	/**
 	 * Inicializa un nuevo objeto de la clase AlimentoCantidad 
@@ -32,7 +32,7 @@ public class AlimentoCantidad {
 	 * 
 	 * @return gramos consumidos del alimento
 	 */
-	public int getGramos() {
+	public double getGramos() {
 		return this.gramos;
 	}
 	
@@ -51,7 +51,7 @@ public class AlimentoCantidad {
 	 * 
 	 * @param gramos gramos consumidos a introducir
 	 */
-	public void setGramos(int gramos) {
+	public void setGramos(double gramos) {
 		if(gramos > 0)
 			this.gramos = gramos;
 		else this.gramos = 0;
