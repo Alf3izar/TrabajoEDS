@@ -193,10 +193,10 @@ public abstract class CalculadoraNutrientes {
 			
 			Alimento alimento = alimentoCantidad.getAlimento();
 			double gramosConsumidos = alimentoCantidad.getGramos();			
-			double hidratos100gr = alimento.getHidratosCarbono();
+			double saturadas100gr = alimento.getGrasasSaturadas();
 			
-			double hidratosConsumidos = (gramosConsumidos * hidratos100gr) / ESTANDAR_GRAMOS;
-			total += hidratosConsumidos;
+			double grasasSaturadasConsumidas = (gramosConsumidos * saturadas100gr) / ESTANDAR_GRAMOS;
+			total += grasasSaturadasConsumidas;
 		}
 		
 		return total;
