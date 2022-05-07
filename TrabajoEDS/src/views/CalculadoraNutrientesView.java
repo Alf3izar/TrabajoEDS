@@ -474,7 +474,7 @@ public class CalculadoraNutrientesView {
 		textFieldCalcio.setInputVerifier(positiveDoubleVerifier);
 		backroundAddAlim.add(textFieldCalcio);
 
-		JLabel lblGr10 = new JLabel("gr");
+		JLabel lblGr10 = new JLabel("mg");
 		lblGr10.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblGr10.setBounds(258, 478, 25, 19);
 		backroundAddAlim.add(lblGr10);
@@ -492,7 +492,7 @@ public class CalculadoraNutrientesView {
 		textFieldHierro.setInputVerifier(positiveDoubleVerifier);
 		backroundAddAlim.add(textFieldHierro);
 
-		JLabel lblGr11 = new JLabel("gr");
+		JLabel lblGr11 = new JLabel("mg");
 		lblGr11.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblGr11.setBounds(258, 522, 25, 19);
 		backroundAddAlim.add(lblGr11);
@@ -703,7 +703,7 @@ public class CalculadoraNutrientesView {
 		lblHierroTotCalc.setBounds(787, 65, 74, 14);
 		backroundCalculo.add(lblHierroTotCalc);
 
-		JLabel lblGr6 = new JLabel("gr");
+		JLabel lblGr6 = new JLabel("mg");
 		lblGr6.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblGr6.setBounds(871, 63, 46, 19);
 		backroundCalculo.add(lblGr6);
@@ -721,7 +721,7 @@ public class CalculadoraNutrientesView {
 		lblCalcioTotCalc.setBounds(787, 93, 74, 14);
 		backroundCalculo.add(lblCalcioTotCalc);
 
-		JLabel lblGr7 = new JLabel("gr");
+		JLabel lblGr7 = new JLabel("mg");
 		lblGr7.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblGr7.setBounds(871, 91, 46, 19);
 		backroundCalculo.add(lblGr7);
