@@ -35,6 +35,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.InputVerifier;
 
 import java.awt.GridLayout;
@@ -136,8 +137,11 @@ public class CalculadoraNutrientesView {
 	 * @author Ana
 	 */
 	private void inicializarVentana() {
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/icon.png"));
+		
 		JFrame = new JFrame();
-		JFrame.setTitle("Calculadora de nutrientes");
+		JFrame.setIconImage(img.getImage());
+		JFrame.setTitle("CalculaNutrientes");
 		JFrame.setBounds(100, 100, 1338, 773);
 		JFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		JFrame.getContentPane().setLayout(null);
@@ -164,7 +168,7 @@ public class CalculadoraNutrientesView {
 
 		backroundPers = new JPanel();
 		backroundPers.setBackground(new Color(251, 248, 204));
-		backroundPers.setBounds(10, 11, 1304, 94);
+		backroundPers.setBounds(0, 0, 1322, 105);
 		JFrame.getContentPane().add(backroundPers);
 		backroundPers.setLayout(null);
 
@@ -180,11 +184,12 @@ public class CalculadoraNutrientesView {
 		JLabel lblNombrePers = new JLabel("Nombre:");
 		lblNombrePers.setForeground(Color.BLACK);
 		lblNombrePers.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblNombrePers.setBounds(44, 56, 77, 14);
+		lblNombrePers.setBounds(28, 56, 77, 14);
 		backroundPers.add(lblNombrePers);
 
 		textFieldNombrePers = new JTextField();
-		textFieldNombrePers.setBounds(116, 53, 97, 20);
+		textFieldNombrePers.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textFieldNombrePers.setBounds(100, 53, 97, 20);
 		backroundPers.add(textFieldNombrePers);
 		textFieldNombrePers.setColumns(10);
 
@@ -193,89 +198,94 @@ public class CalculadoraNutrientesView {
 		JLabel lblGenero = new JLabel("Género:");
 		lblGenero.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblGenero.setForeground(Color.BLACK);
-		lblGenero.setBounds(239, 56, 61, 14);
+		lblGenero.setBounds(223, 56, 61, 14);
 		backroundPers.add(lblGenero);
 
 		comboBoxSexo = new JComboBox<Genero>();
+		comboBoxSexo.setFont(new Font("Dialog", Font.PLAIN, 12));
 		comboBoxSexo.setModel(new DefaultComboBoxModel<Genero>(Genero.values()));
-		comboBoxSexo.setBounds(305, 53, 104, 20);
+		comboBoxSexo.setBounds(289, 53, 104, 20);
 		backroundPers.add(comboBoxSexo);
 
 		// -- Edad de la persona -- //
 
 		JLabel lblEdad = new JLabel("Edad:");
 		lblEdad.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblEdad.setBounds(445, 56, 52, 14);
+		lblEdad.setBounds(419, 56, 52, 14);
 		backroundPers.add(lblEdad);
 
 		textFieldEdad = new JTextField();
+		textFieldEdad.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textFieldEdad.setInputVerifier(positiveIntVerifier);
 		textFieldEdad.setColumns(10);
-		textFieldEdad.setBounds(494, 53, 66, 20);
+		textFieldEdad.setBounds(468, 53, 66, 20);
 		backroundPers.add(textFieldEdad);
 
 		JLabel lblAnyos = new JLabel("años");
 		lblAnyos.setFont(new Font("Dialog", Font.PLAIN, 11));
-		lblAnyos.setBounds(563, 56, 46, 14);
+		lblAnyos.setBounds(537, 56, 46, 14);
 		backroundPers.add(lblAnyos);
 
 		// -- Peso de la persona -- //
 
 		JLabel lblPeso = new JLabel("Peso:");
 		lblPeso.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblPeso.setBounds(627, 56, 61, 14);
+		lblPeso.setBounds(601, 56, 61, 14);
 		backroundPers.add(lblPeso);
 
 		textFieldPeso = new JTextField();
+		textFieldPeso.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textFieldPeso.setInputVerifier(positiveDoubleVerifier);
 		textFieldPeso.setColumns(10);
-		textFieldPeso.setBounds(678, 53, 66, 20);
+		textFieldPeso.setBounds(652, 53, 66, 20);
 		backroundPers.add(textFieldPeso);
 
 		JLabel lblkg = new JLabel("kg");
 		lblkg.setFont(new Font("Dialog", Font.PLAIN, 11));
-		lblkg.setBounds(748, 56, 34, 14);
+		lblkg.setBounds(722, 56, 34, 14);
 		backroundPers.add(lblkg);
 
 		// -- Altura de la persona -- //
 
 		JLabel lblAltura = new JLabel("Altura:");
 		lblAltura.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblAltura.setBounds(781, 54, 52, 19);
+		lblAltura.setBounds(774, 54, 52, 19);
 		backroundPers.add(lblAltura);
 
 		textFieldAltura = new JTextField();
+		textFieldAltura.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textFieldAltura.setInputVerifier(positiveIntVerifier);
-		textFieldAltura.setBounds(837, 53, 86, 20);
+		textFieldAltura.setBounds(830, 53, 86, 20);
 		backroundPers.add(textFieldAltura);
 		textFieldAltura.setColumns(10);
 
 		JLabel lblCm = new JLabel("cm");
 		lblCm.setFont(new Font("Dialog", Font.PLAIN, 11));
-		lblCm.setBounds(927, 56, 20, 15);
+		lblCm.setBounds(920, 56, 20, 15);
 		backroundPers.add(lblCm);
 
 		// -- Actividad Física de la persona -- //
 
 		JLabel lblActFisica = new JLabel("Actividad física:");
 		lblActFisica.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblActFisica.setBounds(967, 54, 111, 19);
+		lblActFisica.setBounds(962, 54, 111, 19);
 		backroundPers.add(lblActFisica);
 
 		comboBoxActFisica = new JComboBox<ActividadFisica>();
+		comboBoxActFisica.setFont(new Font("Dialog", Font.PLAIN, 12));
 		comboBoxActFisica.setModel(new DefaultComboBoxModel<ActividadFisica>(ActividadFisica.values()));
-		comboBoxActFisica.setBounds(1068, 53, 83, 20);
+		comboBoxActFisica.setBounds(1074, 53, 97, 20);
 		backroundPers.add(comboBoxActFisica);
 
 		// -- IMC de la persona (autocalculable) -- //
 
 		JLabel lblImc = new JLabel("IMC:");
 		lblImc.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblImc.setBounds(1173, 54, 37, 19);
+		lblImc.setBounds(1199, 54, 37, 19);
 		backroundPers.add(lblImc);
 
 		lblResultImc = new JLabel("0");
-		lblResultImc.setBounds(1217, 54, 53, 18);
+		lblResultImc.setBounds(1243, 54, 53, 19);
 		backroundPers.add(lblResultImc);
 	}
 
@@ -290,7 +300,7 @@ public class CalculadoraNutrientesView {
 
 		backroundAddAlim = new JPanel();
 		backroundAddAlim.setBackground(new Color(192, 250, 255));
-		backroundAddAlim.setBounds(1025, 104, 289, 628);
+		backroundAddAlim.setBounds(1025, 104, 297, 642);
 		JFrame.getContentPane().add(backroundAddAlim);
 		backroundAddAlim.setLayout(null);		
 
@@ -534,7 +544,7 @@ public class CalculadoraNutrientesView {
 
 		backgroundGeneralListaAlimentos = new JPanel();
 		backgroundGeneralListaAlimentos.setBackground(new Color(207, 186, 240));
-		backgroundGeneralListaAlimentos.setBounds(10, 104, 1015, 628);
+		backgroundGeneralListaAlimentos.setBounds(0, 104, 1025, 642);
 		JFrame.getContentPane().add(backgroundGeneralListaAlimentos);
 		backgroundGeneralListaAlimentos.setLayout(null);
 
@@ -904,13 +914,15 @@ public class CalculadoraNutrientesView {
 		//Añadir elementos GUI
 		JCheckBox chckbxAlimento = new JCheckBox(alimento.getNombre());
 		chckbxAlimento.setHorizontalAlignment(SwingConstants.LEADING);
+		chckbxAlimento.setFont(new Font("Dialog", Font.BOLD, 12));
 		chckbxAlimento.setBackground(new Color(250,209,255));
 		panelListaAlimentos.add(chckbxAlimento);
 
 		JTextField gramosConsumidos = new JTextField();
 		gramosConsumidos.setInputVerifier(positiveDoubleVerifier);
 		gramosConsumidos.setText("0");
-		gramosConsumidos.setHorizontalAlignment(SwingConstants.CENTER);		
+		gramosConsumidos.setHorizontalAlignment(SwingConstants.CENTER);
+		gramosConsumidos.setFont(new Font("Dialog", Font.PLAIN, 12));
 		gramosConsumidos.setColumns(10);		
 		gramosConsumidos.setEditable(false);
 		gramosConsumidos.setBackground(new Color(250,209,255));
@@ -919,42 +931,52 @@ public class CalculadoraNutrientesView {
 
 		JLabel lblEnergia = new JLabel(textEnergia);
 		lblEnergia.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEnergia.setFont(new Font("Dialog", Font.PLAIN, 12));
 		panelListaAlimentos.add(lblEnergia);
 
 		JLabel lblHidratosCarbono = new JLabel(textHidratos);
 		lblHidratosCarbono.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHidratosCarbono.setFont(new Font("Dialog", Font.PLAIN, 12));
 		panelListaAlimentos.add(lblHidratosCarbono);
 
 		JLabel lblAzucar = new JLabel(textAzucar);
 		lblAzucar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAzucar.setFont(new Font("Dialog", Font.PLAIN, 12));
 		panelListaAlimentos.add(lblAzucar);
 
 		JLabel lblGrasas = new JLabel(textGrasas);
 		lblGrasas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGrasas.setFont(new Font("Dialog", Font.PLAIN, 12));
 		panelListaAlimentos.add(lblGrasas);
 
 		JLabel lblGrasasSaturadas = new JLabel(textGrasasSaturadas);
 		lblGrasasSaturadas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGrasasSaturadas.setFont(new Font("Dialog", Font.PLAIN, 12));
 		panelListaAlimentos.add(lblGrasasSaturadas);
 
 		JLabel lblProteinas = new JLabel(textProteinas);
 		lblProteinas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblProteinas.setFont(new Font("Dialog", Font.PLAIN, 12));
 		panelListaAlimentos.add(lblProteinas);
 
 		JLabel lblSal = new JLabel(textSal);
 		lblSal.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSal.setFont(new Font("Dialog", Font.PLAIN, 12));
 		panelListaAlimentos.add(lblSal);
 
 		JLabel lblCalcio = new JLabel(textCalcio);
 		lblCalcio.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCalcio.setFont(new Font("Dialog", Font.PLAIN, 12));
 		panelListaAlimentos.add(lblCalcio);
 
 		JLabel lblHierro = new JLabel(textHierro);
 		lblHierro.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHierro.setFont(new Font("Dialog", Font.PLAIN, 12));
 		panelListaAlimentos.add(lblHierro);
 
 		JButton btnBorrar = new JButton("Eliminar");
 		btnBorrar.setHorizontalAlignment(SwingConstants.CENTER);
+		btnBorrar.setFont(new Font("Dialog", Font.BOLD, 12));
 		btnBorrar.setBackground(new Color(248, 195, 237));
 		panelListaAlimentos.add(btnBorrar);
 
