@@ -1009,6 +1009,8 @@ public class CalculadoraNutrientesView {
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					gramosConsumidos.setEditable(true);
 					gramosConsumidos.setBackground(new Color(254, 247, 255));
+					gramosConsumidos.requestFocus();
+					gramosConsumidos.setText("");
 				}
 				else if(e.getStateChange() == ItemEvent.DESELECTED){
 					alimentoCantidad.setGramos(0);
@@ -1313,7 +1315,7 @@ public class CalculadoraNutrientesView {
 		pan.setHidratosCarbono(58);
 		pan.setAzucar(5);
 		pan.setProteinas(7.8);
-		pan.setSal(540);
+		pan.setSal(0.54);
 
 		// -- Alimento default platano -- //
 
