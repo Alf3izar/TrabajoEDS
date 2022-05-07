@@ -9,12 +9,12 @@ public class AlimentoCantidad {
 	/**
 	 * Objeto de la clase Alimento
 	 */
-	Alimento alimento;
+	private Alimento alimento;
 	
 	/**
 	 * Gramos consumidos del alimento
 	 */
-	double gramos;
+	private double gramos;
 	
 	/**
 	 * Inicializa un nuevo objeto de la clase AlimentoCantidad 

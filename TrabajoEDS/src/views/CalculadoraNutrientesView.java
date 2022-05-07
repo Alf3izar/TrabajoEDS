@@ -750,7 +750,7 @@ public class CalculadoraNutrientesView {
 				else {
 					usuario = crearPersona();				
 
-					DistribucionMacronutrientes desgloseMacrosUsuario = calculateDesgloseMacrosUsuario();
+					DistribucionNutrientes desgloseMacrosUsuario = calculateDesgloseMacrosUsuario();
 					paintDesgloseMacrosUsuario(desgloseMacrosUsuario);
 				}
 			}
@@ -1077,7 +1077,7 @@ public class CalculadoraNutrientesView {
 	 * @param desgloseMacrosUsuario el desglose de los macronutrientes del usuario 
 	 * @author Marta
 	 */
-	private void paintDesgloseMacrosUsuario(DistribucionMacronutrientes desgloseMacrosUsuario) {
+	private void paintDesgloseMacrosUsuario(DistribucionNutrientes desgloseMacrosUsuario) {
 		DecimalFormat dformat = new DecimalFormat("#.##");
 
 		//Energia
@@ -1173,7 +1173,7 @@ public class CalculadoraNutrientesView {
 	 * @return desglose de macronutrientes totales del usuario
 	 * @author Marta
 	 */
-	private DistribucionMacronutrientes calculateDesgloseMacrosUsuario() {					
+	private DistribucionNutrientes calculateDesgloseMacrosUsuario() {					
 		CalculadoraNutrientes calculadora;
 		Genero generoUsuario = usuario.getGenero();
 
@@ -1184,7 +1184,7 @@ public class CalculadoraNutrientesView {
 			calculadora = new CalculadoraNutrientesHombre();			
 		}
 
-		DistribucionMacronutrientes desgloseMacrosUsuario = calculadora.calculoHabitosCorrectos(usuario);
+		DistribucionNutrientes desgloseMacrosUsuario = calculadora.calculoHabitosCorrectos(usuario);
 
 		return desgloseMacrosUsuario;
 	}

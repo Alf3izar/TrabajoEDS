@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import models.Alimento;
 import models.AlimentoCantidad;
-import models.DistribucionMacronutrientes;
+import models.DistribucionNutrientes;
 import models.Persona;
 
 /**
@@ -16,7 +16,7 @@ public abstract class CalculadoraNutrientes {
 	/**
 	 * Constante que representa 100gr
 	 */
-	final int ESTANDAR_GRAMOS = 100;	
+	private final int ESTANDAR_GRAMOS = 100;
 		
 	/**
 	 * Constructor vacio
@@ -24,7 +24,7 @@ public abstract class CalculadoraNutrientes {
 	 */
 	protected CalculadoraNutrientes() {}
 	
-	public abstract DistribucionMacronutrientes calculoHabitosCorrectos(Persona persona);
+	public abstract DistribucionNutrientes calculoHabitosCorrectos(Persona persona);
 	
 	/**
 	 * Calcula y almacena en un objeto de la clase DesgloseMacronutrientes el desglose del total de macronutrientes ingeridos por una persona
@@ -32,8 +32,8 @@ public abstract class CalculadoraNutrientes {
 	 * @param persona persona a la que se va a realizar el calculo de los habitos correctos
 	 * @return desglose del total de macronutrientes ingeridos por una persona
 	 */
-	protected DistribucionMacronutrientes calculoIngestaDiaria(Persona persona) {
-		DistribucionMacronutrientes solucion = new DistribucionMacronutrientes();
+	protected DistribucionNutrientes calculoIngestaDiaria(Persona persona) {
+		DistribucionNutrientes solucion = new DistribucionNutrientes();
 
 		ArrayList<AlimentoCantidad> alimentosDiarios = persona.getAlimentosDiarios();		
 		

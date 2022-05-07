@@ -11,37 +11,37 @@ public class Persona {
 	/**
 	 * Nombre de la persona
 	 */
-	String nombre;
+	private String nombre;
 	
 	/**
 	 * Genero de la persona
 	 */
-	Genero genero;
+	private Genero genero;
 	
 	/**
 	 * Edad de la persona
 	 */
-	int edad;
+	private int edad;
 	
 	/**
 	 * Altura de la persona. Debe introducirse en cm
 	 */
-	int altura;
+	private int altura;
 	
 	/**
 	 * Peso de la persona. Debe introducirse en kg
 	 */
-	double peso;
+	private double peso;
 	
 	/**
 	 * Actividad fisica de la persona
 	 */
-	ActividadFisica actividadFisica;
+	private ActividadFisica actividadFisica;
 	
 	/**
 	 * Lista de alimentos y cantidades correspondientes consumidas por la persona en un dia
 	 */
-	ArrayList<AlimentoCantidad> alimentosDiarios;	
+	private ArrayList<AlimentoCantidad> alimentosDiarios;	
 	
 	/**
 	 * Devuelve el nombre de la persona

@@ -9,53 +9,53 @@ public class Alimento {
 	/**
 	 * Nombre del alimento
 	 */
-	String nombre;
+	private String nombre;
 	
 	/**
 	 * Energia total del alimento. Debe introducirse en Kcal
 	 */
-	double energia;
+	private double energia;
 	
 	/**
 	 * Hidratos de carbono totales del alimento. Debe introducirse en gr
 	 */
-	double hidratosCarbono;
+	private double hidratosCarbono;
 	
 	/**
 	 * Azucar total del alimento. Debe introducirse en gr
 	 */
-	double azucar;
+	private double azucar;
 	
 	/**
 	 * Grasas totales del alimento. Deben introducirse en gr
 	 */
-	double grasas;
+	private double grasas;
 	
 	/**
 	 * Grasas saturadas totales del alimento. Deben introducirse en gr
 	 * y su valor no puede exceder el de las grasas
 	 */
-	double grasasSaturadas;
+	private double grasasSaturadas;
 	
 	/**
 	 * Proteinas totales del alimento. Debe introducirse en gr
 	 */
-	double proteinas;
+	private double proteinas;
 	
 	/**
 	 * Sal total del alimento. Debe introducirse en gr
 	 */
-	double sal;
+	private double sal;
 	
 	/**
 	 * Calcio total del alimento. Debe introducirse en mg
 	 */
-	double calcio;
+	private double calcio;
 	
 	/**
 	 * Hierro total del alimento. Debe introducirse en mg
 	 */
-	double hierro;
+	private double hierro;
 	
 	/**
 	 * Inicializa un nuevo objeto de la clase Alimento

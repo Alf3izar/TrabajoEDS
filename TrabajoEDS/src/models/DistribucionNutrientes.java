@@ -1,106 +1,106 @@
 package models;
 
 /**
- * Representa la distribucion de los macronutrientes totales consumidos en un dia y si estas cantidades son adecuadas o no
+ * Representa la distribucion de los nutrientes totales consumidos en un dia y si estas cantidades son adecuadas o no
  * 
  * @author Marta
  */
-public class DistribucionMacronutrientes {	
+public class DistribucionNutrientes {	
 	/**
 	 * Cantidad total de energia consumida en un dia
 	 */
-	double energiaTotal;
+	private double energiaTotal;
 	
 	/**
 	 * Cantidad total de hidratos de carbono consumida en un dia
 	 */
-	double hidratosCarbonoTotales;
+	private double hidratosCarbonoTotales;
 	
 	/**
 	 * Cantidad total de azucar consumida en un dia
 	 */
-	double azucarTotal;
+	private double azucarTotal;
 	
 	/**
 	 * Cantidad total de grasas consumida en un dia
 	 */
-	double grasasTotales;
+	private double grasasTotales;
 	
 	/**
 	 * Cantidad total de grasas saturadas consumida en un dia
 	 */
-	double grasasSaturadasTotales;
+	private double grasasSaturadasTotales;
 	
 	/**
 	 * Cantidad total de proteinas consumida en un dia
 	 */
-	double proteinasTotales;
+	private double proteinasTotales;
 	
 	/**
 	 * Cantidad total de sal consumida en un dia
 	 */
-	double salTotal;
+	private double salTotal;
 	
 	/**
 	 * Cantidad total de hierro consumida en un dia
 	 */
-	double calcioTotal;
+	private double calcioTotal;
 	
 	/**
 	 * Cantidad total de hierro consumida en un dia
 	 */
-	double hierroTotal;
+	private double hierroTotal;
 	
 	
 	/**
 	 * Representa si la cantidad de energia es adecuada o no
 	 */
-	boolean cantidadEnergiaAdecuada;
+	private boolean cantidadEnergiaAdecuada;
 	
 	/**
 	 * Representa si la cantidad de hidratos de carbono es adecuada o no
 	 */
-	boolean cantidadHidratosCarbonoAdecuada;
+	private boolean cantidadHidratosCarbonoAdecuada;
 	
 	/**
 	 * Representa si la cantidad de azucar es adecuada o no
 	 */
-	boolean cantidadAzucarAdecuada;
+	private boolean cantidadAzucarAdecuada;
 	
 	/**
 	 * Representa si la cantidad de grasas es adecuada o no
 	 */
-	boolean cantidadGrasasAdecuada;
+	private boolean cantidadGrasasAdecuada;
 	
 	/**
 	 * Representa si la cantidad de grasas saturadas es adecuada o no
 	 */
-	boolean cantidadGrasasSaturadasAdecuada;
+	private boolean cantidadGrasasSaturadasAdecuada;
 	
 	/**
 	 * Representa si la cantidad de proteinas es adecuada o no
 	 */
-	boolean cantidadProteinasAdecuada;
+	private boolean cantidadProteinasAdecuada;
 	
 	/**
 	 * Representa si la cantidad de sal es adecuada o no
 	 */
-	boolean cantidadSalAdecuada;
+	private boolean cantidadSalAdecuada;
 	
 	/**
 	 * Representa si la cantidad de calcio es adecuada o no
 	 */
-	boolean cantidadCalcioAdecuada;
+	private boolean cantidadCalcioAdecuada;
 	
 	/**
 	 * Representa si la cantidad de hierro es adecuada o no
 	 */
-	boolean cantidadHierroAdecuada;
+	private boolean cantidadHierroAdecuada;
 	
 	/**
 	 * Inicializa un nuevo objeto de la clase DistribucionMacronutrientes
 	 */
-	public DistribucionMacronutrientes() {}
+	public DistribucionNutrientes() {}
 
 	/**
 	 * Devuelve la energía total consumida en kcal

@@ -4,9 +4,9 @@ import models.*;
 
 public class CalculadoraNutrientesMujer extends CalculadoraNutrientes{
 	@Override
-	public DistribucionMacronutrientes calculoHabitosCorrectos(Persona persona) {
+	public DistribucionNutrientes calculoHabitosCorrectos(Persona persona) {
 		
-		DistribucionMacronutrientes solucion = super.calculoIngestaDiaria(persona);
+		DistribucionNutrientes solucion = super.calculoIngestaDiaria(persona);
 
 		//Inicializando la cantidad de energía adecuada dependiendo de la edad
 		double CANTIDAD_ENERGIA_ADECUADA = 0;//(kcal)
