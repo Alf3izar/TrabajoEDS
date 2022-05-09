@@ -137,7 +137,7 @@ public class CalculadoraNutrientesView {
 	 * @author Ana
 	 */
 	private void inicializarVentana() {
-		ImageIcon img = new ImageIcon(this.getClass().getResource("/icon.png"));
+		ImageIcon img = new ImageIcon(this.getClass().getResource("/Icon.png"));
 		
 		JFrame = new JFrame();
 		JFrame.setIconImage(img.getImage());
@@ -168,13 +168,13 @@ public class CalculadoraNutrientesView {
 
 		backroundPers = new JPanel();
 		backroundPers.setBackground(new Color(251, 248, 204));
-		backroundPers.setBounds(0, 0, 1322, 105);
+		backroundPers.setBounds(0, 0, 1330, 105);
 		JFrame.getContentPane().add(backroundPers);
 		backroundPers.setLayout(null);
 
-		// -- Información -- //
+		// -- InformaciÃ³n -- //
 
-		JLabel lblInfoPers = new JLabel("1.- Introduzca sus datos para obtener un cálculo personalizado sobre sus ingestas diarias: ");
+		JLabel lblInfoPers = new JLabel("1.- Introduzca sus datos para obtener un cÃ¡lculo personalizado sobre sus ingestas diarias: ");
 		lblInfoPers.setFont(new Font("Dialog", Font.BOLD, 13));
 		lblInfoPers.setBounds(349, 11, 616, 31);
 		backroundPers.add(lblInfoPers);
@@ -195,7 +195,7 @@ public class CalculadoraNutrientesView {
 
 		// -- Genero de la persona -- //
 
-		JLabel lblGenero = new JLabel("Género:");
+		JLabel lblGenero = new JLabel("GÃ©nero:");
 		lblGenero.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblGenero.setForeground(Color.BLACK);
 		lblGenero.setBounds(223, 56, 61, 14);
@@ -221,7 +221,7 @@ public class CalculadoraNutrientesView {
 		textFieldEdad.setBounds(468, 53, 66, 20);
 		backroundPers.add(textFieldEdad);
 
-		JLabel lblAnyos = new JLabel("años");
+		JLabel lblAnyos = new JLabel("aÃ±os");
 		lblAnyos.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblAnyos.setBounds(537, 56, 46, 14);
 		backroundPers.add(lblAnyos);
@@ -264,9 +264,9 @@ public class CalculadoraNutrientesView {
 		lblCm.setBounds(920, 56, 20, 15);
 		backroundPers.add(lblCm);
 
-		// -- Actividad Física de la persona -- //
+		// -- Actividad FÃ­sica de la persona -- //
 
-		JLabel lblActFisica = new JLabel("Actividad física:");
+		JLabel lblActFisica = new JLabel("Actividad fÃ­sica:");
 		lblActFisica.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblActFisica.setBounds(962, 54, 111, 19);
 		backroundPers.add(lblActFisica);
@@ -300,11 +300,11 @@ public class CalculadoraNutrientesView {
 
 		backroundAddAlim = new JPanel();
 		backroundAddAlim.setBackground(new Color(192, 250, 255));
-		backroundAddAlim.setBounds(1025, 104, 297, 642);
+		backroundAddAlim.setBounds(1025, 104, 305, 642);
 		JFrame.getContentPane().add(backroundAddAlim);
 		backroundAddAlim.setLayout(null);		
 
-		// -- Información -- //
+		// -- InformaciÃ³n -- //
 
 		JLabel lblInfoAlimOp = new JLabel("OPCIONAL");
 		lblInfoAlimOp.setHorizontalAlignment(SwingConstants.CENTER);
@@ -312,12 +312,12 @@ public class CalculadoraNutrientesView {
 		lblInfoAlimOp.setBounds(105, 20, 83, 18);
 		backroundAddAlim.add(lblInfoAlimOp);
 
-		JLabel lblInfoAl1 = new JLabel("Añadir un alimento a la lista:");
+		JLabel lblInfoAl1 = new JLabel("AÃ±adir un alimento a la lista:");
 		lblInfoAl1.setFont(new Font("Dialog", Font.BOLD, 13));
 		lblInfoAl1.setBounds(50, 47, 205, 18);
 		backroundAddAlim.add(lblInfoAl1);
 
-		JLabel lblInfoNutricional = new JLabel("Información nutricional                     100gr.");
+		JLabel lblInfoNutricional = new JLabel("InformaciÃ³n nutricional                     100gr.");
 		lblInfoNutricional.setFont(new Font("Dialog", Font.BOLD, 11));
 		lblInfoNutricional.setBounds(10, 136, 269, 15);
 		backroundAddAlim.add(lblInfoNutricional);
@@ -335,22 +335,22 @@ public class CalculadoraNutrientesView {
 		textFieldNombreAlimento.setColumns(10);
 		backroundAddAlim.setLayout(null);
 
-		// -- Energía del alimento -- //
+		// -- EnergÃ­a del alimento -- //
 
-		JLabel lblEnergia = new JLabel("Energía:");
+		JLabel lblEnergia = new JLabel("EnergÃ­a:");
 		lblEnergia.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblEnergia.setBounds(10, 170, 64, 19);
+		lblEnergia.setBounds(10, 170, 83, 19);
 		backroundAddAlim.add(lblEnergia);
 
 		textFieldEnergia = new JTextField();
 		textFieldEnergia.setColumns(10);
-		textFieldEnergia.setBounds(168, 170, 86, 20);
+		textFieldEnergia.setBounds(176, 169, 86, 20);
 		textFieldEnergia.setInputVerifier(positiveDoubleVerifier);
 		backroundAddAlim.add(textFieldEnergia);
 
 		JLabel lblKcal1 = new JLabel("kcal");
 		lblKcal1.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblKcal1.setBounds(258, 170, 31, 19);
+		lblKcal1.setBounds(266, 169, 31, 19);
 		backroundAddAlim.add(lblKcal1);
 
 		// -- Grasas del alimento -- //
@@ -361,14 +361,14 @@ public class CalculadoraNutrientesView {
 		backroundAddAlim.add(lblGrasas);
 
 		textFieldGrasas = new JTextField();
-		textFieldGrasas.setBounds(168, 214, 86, 20);
+		textFieldGrasas.setBounds(176, 213, 86, 20);
 		textFieldGrasas.setInputVerifier(positiveDoubleVerifier);
 		backroundAddAlim.add(textFieldGrasas);
 		textFieldGrasas.setColumns(10);
 
 		JLabel lblGr4 = new JLabel("gr");
 		lblGr4.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr4.setBounds(258, 214, 25, 19);
+		lblGr4.setBounds(266, 213, 25, 19);
 		backroundAddAlim.add(lblGr4);
 
 		// -- Grasas saturadas del alimento -- //
@@ -380,13 +380,13 @@ public class CalculadoraNutrientesView {
 
 		textFieldSaturadas = new JTextField();
 		textFieldSaturadas.setColumns(10);
-		textFieldSaturadas.setBounds(168, 258, 86, 20);
+		textFieldSaturadas.setBounds(176, 257, 86, 20);
 		textFieldSaturadas.setInputVerifier(positiveDoubleVerifier);
 		backroundAddAlim.add(textFieldSaturadas);
 
 		JLabel lblGr5 = new JLabel("gr");
 		lblGr5.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr5.setBounds(258, 258, 25, 19);
+		lblGr5.setBounds(266, 257, 25, 19);
 		backroundAddAlim.add(lblGr5);
 
 		// -- Hidratos de carbono del alimento -- //
@@ -398,49 +398,49 @@ public class CalculadoraNutrientesView {
 
 		textFieldHidratos = new JTextField();
 		textFieldHidratos.setColumns(10);
-		textFieldHidratos.setBounds(168, 302, 86, 20);
+		textFieldHidratos.setBounds(176, 301, 86, 20);
 		textFieldHidratos.setInputVerifier(positiveDoubleVerifier);
 		backroundAddAlim.add(textFieldHidratos);
 
 		JLabel lblGr6 = new JLabel("gr");
 		lblGr6.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr6.setBounds(258, 302, 25, 19);
+		lblGr6.setBounds(266, 301, 25, 19);
 		backroundAddAlim.add(lblGr6);
 
-		// -- Azúcares del alimento -- //
+		// -- AzÃºcares del alimento -- //
 
-		JLabel lblAzucar = new JLabel("de los cuales azúcares:");
+		JLabel lblAzucar = new JLabel("de los cuales azÃºcares:");
 		lblAzucar.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblAzucar.setBounds(10, 346, 160, 19);
 		backroundAddAlim.add(lblAzucar);
 
 		textFieldAzucares = new JTextField();
 		textFieldAzucares.setColumns(10);
-		textFieldAzucares.setBounds(168, 346, 86, 20);
+		textFieldAzucares.setBounds(176, 345, 86, 20);
 		textFieldAzucares.setInputVerifier(positiveDoubleVerifier);
 		backroundAddAlim.add(textFieldAzucares);
 
 		JLabel lblGr7 = new JLabel("gr");
 		lblGr7.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr7.setBounds(258, 346, 25, 19);
+		lblGr7.setBounds(266, 345, 25, 19);
 		backroundAddAlim.add(lblGr7);
 
-		// -- Proteínas del alimento -- //
+		// -- ProteÃ­nas del alimento -- //
 
-		JLabel lblProteinas = new JLabel("Proteínas:");
+		JLabel lblProteinas = new JLabel("ProteÃ­nas:");
 		lblProteinas.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblProteinas.setBounds(10, 390, 86, 19);
 		backroundAddAlim.add(lblProteinas);
 
 		textFieldProteinas = new JTextField();
 		textFieldProteinas.setColumns(10);
-		textFieldProteinas.setBounds(168, 390, 86, 20);
+		textFieldProteinas.setBounds(176, 389, 86, 20);
 		textFieldProteinas.setInputVerifier(positiveDoubleVerifier);
 		backroundAddAlim.add(textFieldProteinas);
 
 		JLabel lblGr8 = new JLabel("gr");
 		lblGr8.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr8.setBounds(258, 390, 25, 19);
+		lblGr8.setBounds(266, 389, 25, 19);
 		backroundAddAlim.add(lblGr8);
 
 		// -- Sal del alimento -- //
@@ -452,13 +452,13 @@ public class CalculadoraNutrientesView {
 
 		textFieldSal = new JTextField();
 		textFieldSal.setColumns(10);
-		textFieldSal.setBounds(168, 434, 86, 20);
+		textFieldSal.setBounds(176, 433, 86, 20);
 		textFieldSal.setInputVerifier(positiveDoubleVerifier);
 		backroundAddAlim.add(textFieldSal);
 
 		JLabel lblGr9 = new JLabel("gr");
 		lblGr9.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr9.setBounds(258, 434, 25, 19);
+		lblGr9.setBounds(266, 433, 25, 19);
 		backroundAddAlim.add(lblGr9);
 
 		// -- Calcio del alimento -- //
@@ -470,13 +470,13 @@ public class CalculadoraNutrientesView {
 
 		textFieldCalcio = new JTextField();
 		textFieldCalcio.setColumns(10);
-		textFieldCalcio.setBounds(168, 478, 86, 20);
+		textFieldCalcio.setBounds(176, 477, 86, 20);
 		textFieldCalcio.setInputVerifier(positiveDoubleVerifier);
 		backroundAddAlim.add(textFieldCalcio);
 
 		JLabel lblGr10 = new JLabel("mg");
 		lblGr10.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr10.setBounds(258, 478, 25, 19);
+		lblGr10.setBounds(266, 477, 25, 19);
 		backroundAddAlim.add(lblGr10);
 
 		// -- Hierro del alimento -- //
@@ -488,22 +488,22 @@ public class CalculadoraNutrientesView {
 
 		textFieldHierro = new JTextField();
 		textFieldHierro.setColumns(10);
-		textFieldHierro.setBounds(168, 522, 86, 20);
+		textFieldHierro.setBounds(176, 521, 86, 20);
 		textFieldHierro.setInputVerifier(positiveDoubleVerifier);
 		backroundAddAlim.add(textFieldHierro);
 
 		JLabel lblGr11 = new JLabel("mg");
 		lblGr11.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblGr11.setBounds(258, 522, 25, 19);
+		lblGr11.setBounds(266, 521, 25, 19);
 		backroundAddAlim.add(lblGr11);
 
-		// -- Botón para añadir el alimento -- //
+		// -- BotÃ³n para aÃ±adir el alimento -- //
 
-		JButton btnAddAlimento = new JButton("Añadir");
+		JButton btnAddAlimento = new JButton("AÃ±adir");
 		btnAddAlimento.addActionListener(new ActionListener() {
 			/**
-			 * Añade un alimento al objeto Alimento y pinta una nueva fila en el panel
-			 * de la lista de alimentos. A continuación limpia todos los textFields del Alimento.
+			 * AÃ±ade un alimento al objeto Alimento y pinta una nueva fila en el panel
+			 * de la lista de alimentos. A continuaciÃ³n limpia todos los textFields del Alimento.
 			 * 
 			 * @author Ana
 			 */
@@ -548,7 +548,7 @@ public class CalculadoraNutrientesView {
 		JFrame.getContentPane().add(backgroundGeneralListaAlimentos);
 		backgroundGeneralListaAlimentos.setLayout(null);
 
-		// -- Información -- //
+		// -- InformaciÃ³n -- //
 
 		JLabel lblInfoLista = new JLabel("2.- Listado de alimentos:");
 		lblInfoLista.setFont(new Font("Dialog", Font.BOLD, 13));
@@ -575,14 +575,14 @@ public class CalculadoraNutrientesView {
 		backroundCalculo.setBackground(new Color(250, 209, 255));
 		backroundCalculo.setLayout(null);
 
-		// -- Información del calculo -- //
+		// -- InformaciÃ³n del calculo -- //
 
 		JLabel lblTotMacro = new JLabel("Valores totales de los nutrientes:");
 		lblTotMacro.setBounds(383, 14, 268, 18);
 		backroundCalculo.add(lblTotMacro);
 		lblTotMacro.setFont(new Font("Dialog", Font.BOLD, 13));
 
-		// -- Energía total calculada -- //
+		// -- EnergÃ­a total calculada -- //
 
 		JLabel lblEngTot = new JLabel("Energ\u00EDa:");
 		lblEngTot.setFont(new Font("Dialog", Font.PLAIN, 14));
@@ -672,7 +672,7 @@ public class CalculadoraNutrientesView {
 		lblGr4.setBounds(674, 63, 46, 19);
 		backroundCalculo.add(lblGr4);
 
-		// -- Azúcares totales calculadas -- //
+		// -- AzÃºcares totales calculadas -- //
 
 		JLabel lblAzucaresTot = new JLabel("Az\u00FAcares:");
 		lblAzucaresTot.setFont(new Font("Dialog", Font.PLAIN, 14));
@@ -726,7 +726,7 @@ public class CalculadoraNutrientesView {
 		lblGr7.setBounds(871, 91, 46, 19);
 		backroundCalculo.add(lblGr7);
 
-		// -- Botón calcular -- //
+		// -- BotÃ³n calcular -- //
 
 		JButton btnCalcular = new JButton("Calcular");
 		btnCalcular.setFont(new Font("Dialog", Font.PLAIN, 12));
@@ -771,10 +771,10 @@ public class CalculadoraNutrientesView {
 	}
 
 	/**
-	 * Recoge la información de los textFields y crea un nuevo objeto de la clase Alimento
-	 * para poder settearle la información recogida de los textFields.
+	 * Recoge la informaciÃ³n de los textFields y crea un nuevo objeto de la clase Alimento
+	 * para poder settearle la informaciÃ³n recogida de los textFields.
 	 * 
-	 * @return objeto alimento creado con la información correspondiente.
+	 * @return alimento creado con la informaciÃ³n correspondiente.
 	 * @author Ana
 	 */
 	private Alimento crearAlimento() throws IllegalArgumentException{		
@@ -830,17 +830,17 @@ public class CalculadoraNutrientesView {
 	}
 
 	/**
-	 * Recoge la información de los textFields y crea un nuevo objeto de la clase Persona
-	 * para poder settearle la información recogida de los textFields.
+	 * Recoge la informaciÃ³n de los textFields y crea un nuevo objeto de la clase Persona
+	 * para poder settearle la informaciÃ³n recogida de los textFields.
 	 * 
-	 * @return objeto persona creada con la información correspondiente.
+	 * @return persona creada con la informaciÃ³n correspondiente.
 	 * @author Ana
 	 */
 	private Persona crearPersona() {		
 		Persona persona = new Persona();
 
 
-		// --Obtener la información de los TextFields-- //
+		// --Obtener la informaciÃ³n de los TextFields-- //
 
 		String nombreS = textFieldNombrePers.getText();
 		String edadS = textFieldEdad.getText();
@@ -857,7 +857,7 @@ public class CalculadoraNutrientesView {
 		Integer altura = Integer.parseInt(alturaS);
 
 
-		// --Settear la información para el objeto Persona-- //
+		// --Settear la informaciÃ³n para el objeto Persona-- //
 
 		persona.setNombre(nombreS);
 		persona.setEdad(edad);
@@ -871,12 +871,12 @@ public class CalculadoraNutrientesView {
 	}
 
 	/**
-	 * Añade una nueva fila al panelListaAlimentos con la informacion del alimento
+	 * AÃ±ade una nueva fila al panelListaAlimentos con la informacion del alimento
 	 * 
 	 * Crea un AlimentoCantidad asignando alimento y 0 a los gramos.
 	 * Crea un TextField para introducir los gramos consumidos, un JCheckBox con el nombre del alimento y JLabel con la informacion del alimento
 	 *  
-	 * @param alimento alimento a añadir
+	 * @param alimento alimento a aÃ±adir
 	 * @author Marta
 	 */
 	private void addRowAlimento(Alimento alimento) {		
@@ -911,7 +911,7 @@ public class CalculadoraNutrientesView {
 		double hierro = alimento.getHierro();
 		String textHierro = Double.toString(hierro);
 
-		//Añadir elementos GUI
+		//AÃ±adir elementos GUI
 		JCheckBox chckbxAlimento = new JCheckBox(alimento.getNombre());
 		chckbxAlimento.setHorizontalAlignment(SwingConstants.LEADING);
 		chckbxAlimento.setFont(new Font("Dialog", Font.BOLD, 12));
@@ -1051,9 +1051,9 @@ public class CalculadoraNutrientesView {
 
 
 	/**
-	 * Devuelve true si el string de algun TextField del panel esta vacío o solo contiene espacios en blanco, sino false
+	 * Devuelve true si el string de algun TextField del panel esta vacÃ­o o solo contiene espacios en blanco, sino false
 	 * 
-	 * @return true si el string de algun TextField del panel esta vacío o solo contiene espacios en blanco, sino false
+	 * @return true si el string de algun TextField del panel esta vacÃ­o o solo contiene espacios en blanco, sino false
 	 * @author Marta
 	 */
 	private boolean checkTextFieldsPanel(JPanel panel) {
@@ -1216,7 +1216,7 @@ public class CalculadoraNutrientesView {
 		lblHidratosCarbono.setHorizontalAlignment(SwingConstants.CENTER);
 		panelListaAlimentos.add(lblHidratosCarbono);
 
-		JLabel lblAzucar = new JLabel("Azúcar");
+		JLabel lblAzucar = new JLabel("AzÃºcar");
 		lblAzucar.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblAzucar.setHorizontalAlignment(SwingConstants.CENTER);
 		panelListaAlimentos.add(lblAzucar);
@@ -1231,7 +1231,7 @@ public class CalculadoraNutrientesView {
 		lblGrasasSaturadas.setHorizontalAlignment(SwingConstants.CENTER);
 		panelListaAlimentos.add(lblGrasasSaturadas);
 
-		JLabel lblProteinas = new JLabel("Proteínas");
+		JLabel lblProteinas = new JLabel("ProteÃ­nas");
 		lblProteinas.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblProteinas.setHorizontalAlignment(SwingConstants.CENTER);
 		panelListaAlimentos.add(lblProteinas);
@@ -1272,7 +1272,7 @@ public class CalculadoraNutrientesView {
 	}
 
 	/**
-	 * Crea los alimentos que por defecto estarñan en la lista de alimentos.
+	 * Crea los alimentos que por defecto estarÃ¡n en la lista de alimentos.
 	 * 
 	 * @return 
 	 * @author Ana
@@ -1356,7 +1356,7 @@ public class CalculadoraNutrientesView {
 		ketchup.setSal(2.0);
 
 
-		// -- Añadir alimentos al ArrayList -- //
+		// -- AÃ±adir alimentos al ArrayList -- //
 
 		alimentos.add(macarrones);
 		alimentos.add(lecheVacaSemi);
