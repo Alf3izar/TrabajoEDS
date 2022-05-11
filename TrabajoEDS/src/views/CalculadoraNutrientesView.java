@@ -39,7 +39,11 @@ import javax.swing.ImageIcon;
 import javax.swing.InputVerifier;
 
 import java.awt.GridLayout;
-
+/**
+ * Clase ejecutable que contiene la interfaz de la aplicacion
+ * @author Marta
+ *
+ */
 public class CalculadoraNutrientesView {
 
 	// -- Paneles -- //

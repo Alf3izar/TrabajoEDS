@@ -100,7 +100,7 @@ public class Persona {
 	/**
 	 * Devuelve una lista de alimentos y cantidad correspondiente consumidos por la persona en un dia
 	 * 
-	 * @return ArrayList<AlimentoCantidad> de alimentos y cantidad correspondiente consumidos por la persona en un dia
+	 * @return ArrayList de alimentos y cantidad correspondiente consumidos por la persona en un dia
 	 */
 	public ArrayList<AlimentoCantidad> getAlimentosDiarios() {
 		return alimentosDiarios;
@@ -173,7 +173,7 @@ public class Persona {
 	/**
 	 * Registra el listado de alimentos y cantidad correspondiente consumidos por la persona en un dia
 	 * 
-	 * @param alimentosDiarios ArrayList<AlimentoCantidad> a introducir de alimentos y cantidad correspondiente consumidos por la persona en un dia
+	 * @param alimentosDiarios ArrayList a introducir de alimentos y cantidad correspondiente consumidos por la persona en un dia
 	 */
 	public void setAlimentosDiarios(ArrayList<AlimentoCantidad> alimentosDiarios) {
 		this.alimentosDiarios = alimentosDiarios;

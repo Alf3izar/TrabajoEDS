@@ -8,7 +8,7 @@ import models.DistribucionNutrientes;
 import models.Persona;
 
 /**
- * Calculadora es la clase abstracta base para todas las calculadoras de macronutrientes
+ * Clase abstracta base para todas las calculadoras de macronutrientes
  * @author Marta
  *
  */
@@ -24,13 +24,18 @@ public abstract class CalculadoraNutrientes {
 	 */
 	protected CalculadoraNutrientes() {}
 	
+	/**
+	 * Determina si los nutrientes ingeridos son adecuados o no dependiendo de los criterios usados en cada subclase
+	 * @param persona
+	 * @return si los nutrientes ingeridos son adecuados o no
+	 */
 	public abstract DistribucionNutrientes calculoHabitosCorrectos(Persona persona);
 	
 	/**
 	 * Calcula y almacena en un objeto de la clase DesgloseMacronutrientes el desglose del total de macronutrientes ingeridos por una persona
 	 * 
 	 * @param persona persona a la que se va a realizar el calculo de los habitos correctos
-	 * @return desglose del total de macronutrientes ingeridos por una persona
+	 * @return desglose del total de nutrientes ingeridos por una persona
 	 */
 	protected DistribucionNutrientes calculoIngestaDiaria(Persona persona) {
 		DistribucionNutrientes solucion = new DistribucionNutrientes();

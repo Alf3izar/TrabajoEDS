@@ -1,10 +1,18 @@
 package models;
 
 /**
- * Enumeracion de generos
+ * Generos que se pueden usar
  * 
  * @author Marta
  */
 public enum Genero {
-	MASCULINO, FEMENINO
+	/**
+	 * Genero masculino
+	 */
+	MASCULINO,
+	
+	/**
+	 * Genero femenino
+	 */
+	FEMENINO
 }

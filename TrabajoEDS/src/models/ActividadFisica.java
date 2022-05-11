@@ -1,10 +1,23 @@
 package models;
 
 /**
- * Enumeracion de tipos de actividad fisica
+ * Tipos de actividad fisica que se pueden utilizar
  * 
  * @author Marta
  */
 public enum ActividadFisica {
-	LEVE, INTENSA, MODERADA
+	/**
+	 * Actividad leve
+	 */
+	LEVE,
+	
+	/**
+	 * Actividad moderada
+	 */
+	MODERADA,
+	
+	/**
+	 * Actividad intensa
+	 */
+	INTENSA
 }
