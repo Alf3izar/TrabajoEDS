@@ -48,7 +48,7 @@ public class CalculadoraNutrientesMujer extends CalculadoraNutrientes{
 	} 
 
 	/**
-	 * Este metodo sirve para comprovar si la energía total es mayor de la recomendada
+	 * Este metodo sirve para comprobar si la energía total es mayor de la recomendada
 	 *  
 	 * @param El parametro cantidadEnergiaTotal es la cantidad de energia total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
 	 * 
@@ -68,7 +68,7 @@ public class CalculadoraNutrientesMujer extends CalculadoraNutrientes{
 	}
 
 	/**
-	 * Este metodo sirve para comprovar si la cantidad de grasas totales es mayor de la recomendada
+	 * Este metodo sirve para comprobar si la cantidad de grasas totales es mayor de la recomendada
 	 *  
 	 * @param El parametro cantidadGrasasTotal es la cantidad de grasas totales que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
 	 * 
@@ -88,7 +88,7 @@ public class CalculadoraNutrientesMujer extends CalculadoraNutrientes{
 	}
 
 	/**
-	 * Este metodo sirve para comprovar si la cantidad de grasas saturadas totales es mayor de la recomendada
+	 * Este metodo sirve para comprobar si la cantidad de grasas saturadas totales es mayor de la recomendada
 	 *  
 	 * @param El parametro cantidadGrasasSaturadasTotal es la cantidad de grasas saturadas totales que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
 	 * 
@@ -108,9 +108,9 @@ public class CalculadoraNutrientesMujer extends CalculadoraNutrientes{
 	}
 
 	/**
-	 * Este metodo sirve para comprovar si la cantidad de sal total es mayor de la recomendada
+	 * Este metodo sirve para comprobar si la cantidad de sal total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadSalTotal es la cantidad de sal totale que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
+	 * @param El parametro cantidadSalTotal es la cantidad de sal total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
 	 * 
 	 * @return El valor de retorno sera true si la cantidad de sal adecuada es mayor que la total y false si es menor
 	 * 
@@ -125,9 +125,9 @@ public class CalculadoraNutrientesMujer extends CalculadoraNutrientes{
 	}
 
 	/**
-	 * Este metodo sirve para comprovar si la cantidad de hidratos de carbono total es mayor de la recomendada
+	 * Este metodo sirve para comprobar si la cantidad de hidratos de carbono total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadHidratosCarbonoTotal es la cantidad de hidratos de carbono totale que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
+	 * @param El parametro cantidadHidratosCarbonoTotal es la cantidad de hidratos de carbono total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
 	 * 
 	 * @param El parametro cantidadHidratosCarbonoMinimaAdecuada es la cantidad de hidratos de carbono adecuada minimas que declaramos
 	 * en el programa dependiendo de la edad de la persona
@@ -148,9 +148,9 @@ public class CalculadoraNutrientesMujer extends CalculadoraNutrientes{
 	}
 
 	/**
-	 * Este metodo sirve para comprovar si la cantidad de azucar totale es mayor de la recomendada
+	 * Este metodo sirve para comprobar si la cantidad de azucar total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadAzucarTotal es la cantidad de azucar totale que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
+	 * @param El parametro cantidadAzucarTotal es la cantidad de azucar total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
 	 * 
 	 * @param El parametro cantidadAzucarAdecuada es la cantidad de azucar adecuada que declaramos
 	 * en el programa dependiendo de la edad de la persona
@@ -168,14 +168,14 @@ public class CalculadoraNutrientesMujer extends CalculadoraNutrientes{
 	}
 
 	/**
-	 * Este metodo sirve para comprovar si la cantidad de calcio totale es mayor de la recomendada
+	 * Este metodo sirve para comprobar si la cantidad de calcio total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadCalcioTotal es la cantidad de calcio totale que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
+	 * @param El parametro cantidadCalcioTotal es la cantidad de calcio total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
 	 * 
 	 * @param El parametro cantidadCalcioAdecuada es la cantidad de calcio adecuada que declaramos
 	 * en el programa dependiendo de la edad de la persona
 	 * 
-	 * @return El valor de retorno sera true si la cantidad de calico adecuada es mayor que la total y false si es menor
+	 * @return El valor de retorno sera true si la cantidad de calcio adecuada es mayor que la total y false si es menor
 	 * 
 	 */
 	public static boolean comprobarSiCantidadCalcioEsAdecuada(double cantidadCalcioTotal, double cantidadCalcioAdecuada ) {
@@ -189,9 +189,9 @@ public class CalculadoraNutrientesMujer extends CalculadoraNutrientes{
 
 
 	/**
-	 * Este metodo sirve para comprovar si la cantidad de hierro totale es mayor de la recomendada
+	 * Este metodo sirve para comprobar si la cantidad de hierro total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadHierroTotal es la cantidad de hierro totale que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
+	 * @param El parametro cantidadHierroTotal es la cantidad de hierro total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
 	 * 
 	 * @param El parametro cantidadHierroAdecuada es la cantidad de hierro adecuada que declaramos
 	 * en el programa dependiendo de la edad de la persona
@@ -209,9 +209,9 @@ public class CalculadoraNutrientesMujer extends CalculadoraNutrientes{
 	}
 
 	/**
-	 * Este metodo sirve para comprovar si la cantidad de proteinas totale es mayor de la recomendada
+	 * Este metodo sirve para comprobar si la cantidad de proteinas total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadProteinasTotal es la cantidad de proteinas totale que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
+	 * @param El parametro cantidadProteinasTotal es la cantidad de proteinas total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
 	 * 
 	 * @param El parametro cantidadProteinasAdecuada es la cantidad de proteinas adecuada que declaramos
 	 * en el programa dependiendo de la edad de la persona
