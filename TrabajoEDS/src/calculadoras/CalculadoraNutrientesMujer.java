@@ -233,68 +233,69 @@ public class CalculadoraNutrientesMujer extends CalculadoraNutrientes{
 	public DistribucionNutrientes calculoHabitosCorrectos(Persona persona) {
 
 		DistribucionNutrientes solucion = super.calculoIngestaDiaria(persona);
+		edadPersona = persona.getEdad();
 
-		if (persona.getEdad()>=0 && persona.getEdad()<=1) {
+		if (edadPersona>=0 && edadPersona<=1) {
 			cantidadEnergiaAdecuada = 950;
 			cantidadCalcioAdecuada = 525;
 			cantidadHierroAdecuada = 7;
 			cantidadProteinasAdecuada = 20;
 		}
-		else if (persona.getEdad()>=1 && persona.getEdad()<=3) {
+		else if (edadPersona>=1 && edadPersona<=3) {
 			cantidadEnergiaAdecuada = 1250;
 			cantidadCalcioAdecuada = 600;
 			cantidadHierroAdecuada = 7;
 			cantidadProteinasAdecuada = 23;
 		}
-		else if (persona.getEdad()>=4 && persona.getEdad()<=5) {
+		else if (edadPersona>=4 && edadPersona<=5) {
 			cantidadEnergiaAdecuada = 1700;
 			cantidadCalcioAdecuada = 700;
 			cantidadHierroAdecuada = 9;
 			cantidadProteinasAdecuada = 30;
 		}
-		else if (persona.getEdad()>=6 && persona.getEdad()<=9) {
+		else if (edadPersona>=6 && edadPersona<=9) {
 			cantidadEnergiaAdecuada = 2000;
 			cantidadCalcioAdecuada = 800;
 			cantidadHierroAdecuada = 9;
 			cantidadProteinasAdecuada = 36;
 		}
-		else if (persona.getEdad()>=10 && persona.getEdad()<=12) {
+		else if (edadPersona>=10 && edadPersona<=12) {
 			cantidadEnergiaAdecuada = 2300;
 			cantidadCalcioAdecuada = 1300;
 			cantidadHierroAdecuada = 18;
 			cantidadProteinasAdecuada = 41;
 		}
-		else if (persona.getEdad()>=13 && persona.getEdad()<=15) {
+		else if (edadPersona>=13 && edadPersona<=15) {
 			cantidadEnergiaAdecuada = 2500;
 			cantidadCalcioAdecuada = 1300;
 			cantidadHierroAdecuada = 18;
 			cantidadProteinasAdecuada = 45;
 		}
-		else if (persona.getEdad()>=16 && persona.getEdad()<=19) {
+		else if (edadPersona>=16 && edadPersona<=19) {
 			cantidadEnergiaAdecuada = 2300;
 			cantidadCalcioAdecuada = 1300;
 			cantidadHierroAdecuada = 18;
 			cantidadProteinasAdecuada = 43;
 		}
-		else if (persona.getEdad()>=20 && persona.getEdad()<=39) {
+		else if (edadPersona>=20 && edadPersona<=39) {
 			cantidadEnergiaAdecuada = 2300;
 			cantidadCalcioAdecuada = 1000;
 			cantidadHierroAdecuada = 18;
 			cantidadProteinasAdecuada = 41;
 		}
-		else if (persona.getEdad()>=40 && persona.getEdad()<=49) {
+		else if (edadPersona>=40 && edadPersona<=49) {
 			cantidadEnergiaAdecuada = 2185;
 			cantidadCalcioAdecuada = 1000;
 			cantidadHierroAdecuada = 18;
 			cantidadProteinasAdecuada = 41;
 		}
-		else if (persona.getEdad()>=50 && persona.getEdad()<=59) {
+		else if (edadPersona>=50 && edadPersona<=59) {
 			cantidadEnergiaAdecuada = 2075;
 			cantidadCalcioAdecuada = 1200;
 			cantidadHierroAdecuada = 10;
 			cantidadProteinasAdecuada = 41;
 		}
-		else if (persona.getEdad()>=60) {
+		else if (edadPersona>=60) {
 			cantidadEnergiaAdecuada = 1875;
 			cantidadCalcioAdecuada = 1200;
 			cantidadHierroAdecuada = 10;
