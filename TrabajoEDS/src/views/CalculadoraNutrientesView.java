@@ -198,39 +198,39 @@ public class CalculadoraNutrientesView {
 		JLabel lblGenero = new JLabel("Género:");
 		lblGenero.setFont(new Font("Dialog", Font.PLAIN, 14));
 		lblGenero.setForeground(Color.BLACK);
-		lblGenero.setBounds(223, 56, 61, 14);
+		lblGenero.setBounds(218, 56, 61, 14);
 		backroundPers.add(lblGenero);
 
 		comboBoxSexo = new JComboBox<Genero>();
 		comboBoxSexo.setFont(new Font("Dialog", Font.PLAIN, 12));
 		comboBoxSexo.setModel(new DefaultComboBoxModel<Genero>(Genero.values()));
-		comboBoxSexo.setBounds(289, 53, 104, 20);
+		comboBoxSexo.setBounds(284, 53, 104, 20);
 		backroundPers.add(comboBoxSexo);
 
 		// -- Edad de la persona -- //
 
 		JLabel lblEdad = new JLabel("Edad:");
 		lblEdad.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblEdad.setBounds(419, 56, 52, 14);
+		lblEdad.setBounds(414, 56, 52, 14);
 		backroundPers.add(lblEdad);
 
 		textFieldEdad = new JTextField();
 		textFieldEdad.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textFieldEdad.setInputVerifier(positiveIntVerifier);
 		textFieldEdad.setColumns(10);
-		textFieldEdad.setBounds(468, 53, 66, 20);
+		textFieldEdad.setBounds(463, 53, 66, 20);
 		backroundPers.add(textFieldEdad);
 
 		JLabel lblAnyos = new JLabel("años");
 		lblAnyos.setFont(new Font("Dialog", Font.PLAIN, 11));
-		lblAnyos.setBounds(537, 56, 46, 14);
+		lblAnyos.setBounds(532, 56, 46, 14);
 		backroundPers.add(lblAnyos);
 
 		// -- Peso de la persona -- //
 
-		JLabel lblPeso = new JLabel("Peso:");
+		JLabel lblPeso = new JLabel("Peso (Kg):");
 		lblPeso.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblPeso.setBounds(601, 56, 61, 14);
+		lblPeso.setBounds(577, 53, 86, 20);
 		backroundPers.add(lblPeso);
 
 		textFieldPeso = new JTextField();
@@ -247,34 +247,34 @@ public class CalculadoraNutrientesView {
 
 		// -- Altura de la persona -- //
 
-		JLabel lblAltura = new JLabel("Altura:");
+		JLabel lblAltura = new JLabel("Altura (cm):");
 		lblAltura.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblAltura.setBounds(774, 54, 52, 19);
+		lblAltura.setBounds(767, 54, 77, 19);
 		backroundPers.add(lblAltura);
 
 		textFieldAltura = new JTextField();
 		textFieldAltura.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textFieldAltura.setInputVerifier(positiveIntVerifier);
-		textFieldAltura.setBounds(830, 53, 86, 20);
+		textFieldAltura.setBounds(848, 53, 86, 20);
 		backroundPers.add(textFieldAltura);
 		textFieldAltura.setColumns(10);
 
 		JLabel lblCm = new JLabel("cm");
 		lblCm.setFont(new Font("Dialog", Font.PLAIN, 11));
-		lblCm.setBounds(920, 56, 20, 15);
+		lblCm.setBounds(938, 56, 20, 15);
 		backroundPers.add(lblCm);
 
 		// -- Actividad Física de la persona -- //
 
 		JLabel lblActFisica = new JLabel("Actividad física:");
 		lblActFisica.setFont(new Font("Dialog", Font.PLAIN, 14));
-		lblActFisica.setBounds(962, 54, 111, 19);
+		lblActFisica.setBounds(968, 54, 111, 19);
 		backroundPers.add(lblActFisica);
 
 		comboBoxActFisica = new JComboBox<ActividadFisica>();
 		comboBoxActFisica.setFont(new Font("Dialog", Font.PLAIN, 12));
 		comboBoxActFisica.setModel(new DefaultComboBoxModel<ActividadFisica>(ActividadFisica.values()));
-		comboBoxActFisica.setBounds(1074, 53, 97, 20);
+		comboBoxActFisica.setBounds(1080, 53, 97, 20);
 		backroundPers.add(comboBoxActFisica);
 
 		// -- IMC de la persona (autocalculable) -- //
