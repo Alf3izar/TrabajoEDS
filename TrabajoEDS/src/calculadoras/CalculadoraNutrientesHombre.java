@@ -3,40 +3,63 @@ package calculadoras;
 import models.*;
 
 
+
 /**
- * CalculadoraNutrientesHombre es la clase que calcula los nutrientes adecuados si la persona es hombre
- * 
+ * CalculadoraNutrientesHombre es la clase que calcula los nutrientes adecuados si la persona es hombre.
+ *
  * @author Raul
  */
 
 public class CalculadoraNutrientesHombre extends CalculadoraNutrientes{
+	
 	/**
-	 * Inicializando las variables que se declararan posteriormente dependiendo de la edad
-	 * 
+	 * Por alguna razon el JavaDoc da un error si no coloco un constructor vacio aqui y lo comento
 	 */
+	public CalculadoraNutrientesHombre() {
+		
+	}
+	
+	/** Inicializando las variables que se declararan posteriormente dependiendo de la edad. 
+	 * 
+	 * 
+	 * La cantidad de energia adecuada*/
 	private double cantidadEnergiaAdecuada;//(kcal)
+	
+	/** La cantidad calcio adecuada. */
 	private double cantidadCalcioAdecuada;//(mg)
+	
+	/** La cantidad hierro adecuada. */
 	private double cantidadHierroAdecuada;//(mg)
+	
+	/** La cantidad proteinas adecuada. */
 	private double cantidadProteinasAdecuada;//(g)
+	
+	/** La edad persona. */
 	private int edadPersona;
+	
+	/** La cantidad grasas adecuada. */
 	private double cantidadGrasasAdecuada;//(kcal)
+	
+	/** La cantidad grasas saturadas adecuada. */
 	private double cantidadGrasasSaturadasAdecuada;//(kcal)
+	
+	/** La cantidad hidratos carbono minima adecuada. */
 	private double cantidadHidratosCarbonoMinimaAdecuada;//(kcal)
+	
+	/** La cantidad hidratos carbono maxima adecuada. */
 	private double cantidadHidratosCarbonoMaximaAdecuada;//(kcal)
+	
+	/** La cantidad azucar adecuada. */
 	private double cantidadAzucarAdecuada;//(kcal)
 	
 	/**
 	 * Este metodo sirve para cambiar porcentualmente la energia adecuada dependiendo de la actividad física
 	 * Si es LEVE se resta un 10%, si es intensa se suma un 20% y si es moderada no se modifica
 	 *  
-	 * @param El parametro persona es la persona sobre la que estamos haciendo el calculo y en este caso se necesita 
-	 * para ver el atributo ActividadFisica de esa persona y calcular en consecuencia
-	 * 
-	 * @param El parametro cantidadEnergiaAdecuada como dice su propio nombre, es la cantidad de energia adecuada que declaramos
-	 * en el programa dependiendo de la edad de la persona
-	 * 
+	 *
+	 * @param persona the persona
+	 * @param cantidadEnergiaAdecuada the cantidad energia adecuada
 	 * @return El valor de retorno tambien es bastante autodescriptivo, pues es la cantidad de energia adecuada
-	 * 
 	 */
 	public static double modificarEnergiaAdecuadoDependiendoActividadFisica(Persona persona, double cantidadEnergiaAdecuada) {
 		if (persona.getActividadFisica().equals(ActividadFisica.LEVE)) {
@@ -51,13 +74,10 @@ public class CalculadoraNutrientesHombre extends CalculadoraNutrientes{
 	/**
 	 * Este metodo sirve para comprobar si la energía total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadEnergiaTotal es la cantidad de energia total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
-	 * 
-	 * @param El parametro cantidadEnergiaAdecuada es la cantidad de energia adecuada que declaramos
-	 * en el programa dependiendo de la edad de la persona
-	 * 
+	 *
+	 * @param cantidadEnergiaTotal the cantidad energia total
+	 * @param cantidadEnergiaAdecuada the cantidad energia adecuada
 	 * @return El valor de retorno sera true si la cantidad de energia adecuada es mayor que la total y false si es menor
-	 * 
 	 */
 	public static boolean comprobarSiCantidadEnergiaEsAdecuada(double cantidadEnergiaTotal, double cantidadEnergiaAdecuada) {
 		if(cantidadEnergiaTotal < cantidadEnergiaAdecuada) {
@@ -71,13 +91,10 @@ public class CalculadoraNutrientesHombre extends CalculadoraNutrientes{
 	/**
 	 * Este metodo sirve para comprobar si la cantidad de grasas totales es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadGrasasTotal es la cantidad de grasas totales que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
-	 * 
-	 * @param El parametro cantidadGrasasAdecuada es la cantidad de grasas adecuada que declaramos
-	 * en el programa dependiendo de la edad de la persona
-	 * 
+	 *
+	 * @param cantidadGrasasTotal the cantidad grasas total
+	 * @param cantidadGrasasAdecuada the cantidad grasas adecuada
 	 * @return El valor de retorno sera true si la cantidad de grasas adecuada es mayor que la total y false si es menor
-	 * 
 	 */
 	public static boolean comprobarSiCantidadGrasasTotalesEsAdecuada(double cantidadGrasasTotal, double cantidadGrasasAdecuada) {
 		if(cantidadGrasasTotal < cantidadGrasasAdecuada) {
@@ -91,13 +108,10 @@ public class CalculadoraNutrientesHombre extends CalculadoraNutrientes{
 	/**
 	 * Este metodo sirve para comprobar si la cantidad de grasas saturadas totales es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadGrasasSaturadasTotal es la cantidad de grasas saturadas totales que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
-	 * 
-	 * @param El parametro cantidadGrasasSaturadasAdecuada es la cantidad de grasas saturadas adecuada que declaramos
-	 * en el programa dependiendo de la edad de la persona
-	 * 
+	 *
+	 * @param cantidadGrasasSaturadasTotal the cantidad grasas saturadas total
+	 * @param cantidadGrasasSaturadasAdecuada the cantidad grasas saturadas adecuada
 	 * @return El valor de retorno sera true si la cantidad de grasas saturadas adecuada es mayor que la total y false si es menor
-	 * 
 	 */
 	public static boolean comprobarSiCantidadGrasasSaturadasEsAdecuada(double cantidadGrasasSaturadasTotal, double cantidadGrasasSaturadasAdecuada) {
 		if(cantidadGrasasSaturadasTotal < cantidadGrasasSaturadasAdecuada) {
@@ -111,10 +125,9 @@ public class CalculadoraNutrientesHombre extends CalculadoraNutrientes{
 	/**
 	 * Este metodo sirve para comprobar si la cantidad de sal total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadSalTotal es la cantidad de sal total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
-	 * 
+	 *
+	 * @param cantidadSalTotal the cantidad sal total
 	 * @return El valor de retorno sera true si la cantidad de sal adecuada es mayor que la total y false si es menor
-	 * 
 	 */
 	public static boolean comprobarSiCantidadSalEsAdecuada(double cantidadSalTotal) {
 		if(cantidadSalTotal < 5) {
@@ -128,16 +141,11 @@ public class CalculadoraNutrientesHombre extends CalculadoraNutrientes{
 	/**
 	 * Este metodo sirve para comprobar si la cantidad de hidratos de carbono total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadHidratosCarbonoTotal es la cantidad de hidratos de carbono total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
-	 * 
-	 * @param El parametro cantidadHidratosCarbonoMinimaAdecuada es la cantidad de hidratos de carbono adecuada minimas que declaramos
-	 * en el programa dependiendo de la edad de la persona
-	 * 
-	 * @param El parametro cantidadHidratosCarbonoMaximaAdecuada es la cantidad de hidratos de carbono adecuada maxima que declaramos
-	 * en el programa dependiendo de la edad de la persona
-	 * 
+	 *
+	 * @param cantidadHidratosCarbonoTotal the cantidad hidratos carbono total
+	 * @param cantidadHidratosCarbonoMinimaAdecuada the cantidad hidratos carbono minima adecuada
+	 * @param cantidadHidratosCarbonoMaximaAdecuada the cantidad hidratos carbono maxima adecuada
 	 * @return El valor de retorno sera true si la cantidad de hidratos de carbono adecuada es mayor que la total y false si es menor
-	 * 
 	 */
 	public static boolean comprobarSiCantidadHidratosCarbonoEsAdecuada(double cantidadHidratosCarbonoTotal, double cantidadHidratosCarbonoMinimaAdecuada, double cantidadHidratosCarbonoMaximaAdecuada ) {
 		if(cantidadHidratosCarbonoTotal > cantidadHidratosCarbonoMinimaAdecuada && cantidadHidratosCarbonoTotal < cantidadHidratosCarbonoMaximaAdecuada) {
@@ -151,13 +159,10 @@ public class CalculadoraNutrientesHombre extends CalculadoraNutrientes{
 	/**
 	 * Este metodo sirve para comprobar si la cantidad de azucar total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadAzucarTotal es la cantidad de azucar total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
-	 * 
-	 * @param El parametro cantidadAzucarAdecuada es la cantidad de azucar adecuada que declaramos
-	 * en el programa dependiendo de la edad de la persona
-	 * 
+	 *
+	 * @param cantidadAzucarTotal the cantidad azucar total
+	 * @param cantidadAzucarAdecuada the cantidad azucar adecuada
 	 * @return El valor de retorno sera true si la cantidad de azucar adecuada es mayor que la total y false si es menor
-	 * 
 	 */
 	public static boolean comprobarSiCantidadAzucarEsAdecuada(double cantidadAzucarTotal, double cantidadAzucarAdecuada ) {
 		if(cantidadAzucarTotal < cantidadAzucarAdecuada) {
@@ -171,13 +176,10 @@ public class CalculadoraNutrientesHombre extends CalculadoraNutrientes{
 	/**
 	 * Este metodo sirve para comprobar si la cantidad de calcio total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadCalcioTotal es la cantidad de calcio total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
-	 * 
-	 * @param El parametro cantidadCalcioAdecuada es la cantidad de calcio adecuada que declaramos
-	 * en el programa dependiendo de la edad de la persona
-	 * 
+	 *
+	 * @param cantidadCalcioTotal the cantidad calcio total
+	 * @param cantidadCalcioAdecuada the cantidad calcio adecuada
 	 * @return El valor de retorno sera true si la cantidad de calcio adecuada es mayor que la total y false si es menor
-	 * 
 	 */
 	public static boolean comprobarSiCantidadCalcioEsAdecuada(double cantidadCalcioTotal, double cantidadCalcioAdecuada ) {
 		if(cantidadCalcioTotal < cantidadCalcioAdecuada) {
@@ -192,13 +194,10 @@ public class CalculadoraNutrientesHombre extends CalculadoraNutrientes{
 	/**
 	 * Este metodo sirve para comprobar si la cantidad de hierro total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadHierroTotal es la cantidad de hierro total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
-	 * 
-	 * @param El parametro cantidadHierroAdecuada es la cantidad de hierro adecuada que declaramos
-	 * en el programa dependiendo de la edad de la persona
-	 * 
+	 *
+	 * @param cantidadHierroTotal the cantidad hierro total
+	 * @param cantidadHierroAdecuada the cantidad hierro adecuada
 	 * @return El valor de retorno sera true si la cantidad de hierro adecuada es mayor que la total y false si es menor
-	 * 
 	 */
 	public static boolean comprobarSiCantidadHierroEsAdecuada(double cantidadHierroTotal, double cantidadHierroAdecuada ) {
 		if(cantidadHierroTotal < cantidadHierroAdecuada) {
@@ -212,13 +211,10 @@ public class CalculadoraNutrientesHombre extends CalculadoraNutrientes{
 	/**
 	 * Este metodo sirve para comprobar si la cantidad de proteinas total es mayor de la recomendada
 	 *  
-	 * @param El parametro cantidadProteinasTotal es la cantidad de proteinas total que se saca de "solucion" (un objeto de la clase DistribucionMacronutrientes) 
-	 * 
-	 * @param El parametro cantidadProteinasAdecuada es la cantidad de proteinas adecuada que declaramos
-	 * en el programa dependiendo de la edad de la persona
-	 * 
+	 *
+	 * @param cantidadProteinasTotal the cantidad proteinas total
+	 * @param cantidadProteinasAdecuada the cantidad proteinas adecuada
 	 * @return El valor de retorno sera true si la cantidad de proteinas adecuada es mayor que la total y false si es menor
-	 * 
 	 */
 	public static boolean comprobarSiCantidadProteinasEsAdecuada(double cantidadProteinasTotal, double cantidadProteinasAdecuada ) {
 		if(cantidadProteinasTotal < cantidadProteinasAdecuada) {
@@ -229,6 +225,12 @@ public class CalculadoraNutrientesHombre extends CalculadoraNutrientes{
 		}
 	}
 	
+	/**
+	 * Calculo habitos correctos.
+	 *
+	 * @param persona the persona
+	 * @return the distribucion nutrientes
+	 */
 	@Override
 	public DistribucionNutrientes calculoHabitosCorrectos(Persona persona) {
 		// TODO Auto-generated method stub

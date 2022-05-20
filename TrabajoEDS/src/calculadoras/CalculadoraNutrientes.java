@@ -26,7 +26,7 @@ public abstract class CalculadoraNutrientes {
 	
 	/**
 	 * Determina si los nutrientes ingeridos son adecuados o no dependiendo de los criterios usados en cada subclase
-	 * @param persona
+	 * @param persona es la persona de la que se van a sacar todos los datos necesarios para hecer los calculos
 	 * @return si los nutrientes ingeridos son adecuados o no
 	 */
 	public abstract DistribucionNutrientes calculoHabitosCorrectos(Persona persona);

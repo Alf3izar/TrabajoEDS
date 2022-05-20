@@ -103,7 +103,7 @@ public class DistribucionNutrientes {
 	public DistribucionNutrientes() {}
 
 	/**
-	 * Devuelve la energía total consumida en kcal
+	 * Devuelve la energia total consumida en kcal
 	 * 
 	 * @return energia total consumida (en kcal)
 	 */
