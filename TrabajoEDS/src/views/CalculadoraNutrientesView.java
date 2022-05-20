@@ -102,7 +102,7 @@ public class CalculadoraNutrientesView {
 
 	/**
 	 * Launch the application.
-	 * @param argumento por defecto del Main
+	 * @param args argumento por defecto del Main
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
