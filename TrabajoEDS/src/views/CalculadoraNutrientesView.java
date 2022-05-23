@@ -1295,7 +1295,8 @@ public class CalculadoraNutrientesView {
 		macarrones.setAzucar(2.9);
 		macarrones.setProteinas(12);
 		macarrones.setSal(0.03);
-
+		macarrones.setHierro(0);
+		macarrones.setCalcio(0);
 
 		// -- Alimento default leche vaca semidesnatada -- //
 
@@ -1308,7 +1309,8 @@ public class CalculadoraNutrientesView {
 		lecheVacaSemi.setAzucar(4.7);
 		lecheVacaSemi.setProteinas(3.2);
 		lecheVacaSemi.setSal(0.13);
-
+		lecheVacaSemi.setHierro(0);
+		lecheVacaSemi.setCalcio(0);
 
 		// -- Alimento default pan -- //
 
@@ -1321,6 +1323,8 @@ public class CalculadoraNutrientesView {
 		pan.setAzucar(5);
 		pan.setProteinas(7.8);
 		pan.setSal(0.54);
+		pan.setHierro(0.017);
+		pan.setCalcio(0.19);
 
 		// -- Alimento default platano -- //
 
@@ -1333,7 +1337,8 @@ public class CalculadoraNutrientesView {
 		platano.setAzucar(12);
 		platano.setProteinas(1.2);
 		platano.setSal(1);
-
+		platano.setHierro(0.06);
+		platano.setCalcio(0.9);
 
 		// -- Alimento default cereales arroz chocolate -- //
 
@@ -1346,7 +1351,8 @@ public class CalculadoraNutrientesView {
 		cerealesArrozChocolate.setAzucar(22);
 		cerealesArrozChocolate.setProteinas(7.2);
 		cerealesArrozChocolate.setSal(0.23);
-
+		cerealesArrozChocolate.setHierro(0.7);
+		cerealesArrozChocolate.setCalcio(0);
 
 		// -- Alimento default ketchup -- //
 
@@ -1359,7 +1365,8 @@ public class CalculadoraNutrientesView {
 		ketchup.setAzucar(20);
 		ketchup.setProteinas(1.6);
 		ketchup.setSal(2.0);
-
+		ketchup.setHierro(0);
+		ketchup.setCalcio(0);
 
 		// -- Añadir alimentos al ArrayList -- //
 
